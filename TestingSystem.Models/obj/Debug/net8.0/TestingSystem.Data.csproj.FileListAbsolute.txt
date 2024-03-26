@@ -1,0 +1,17 @@
+D:\.NET Project\TestingSystem\TestingSystem.Models\bin\Debug\net8.0\TestingSystem.Data.deps.json
+D:\.NET Project\TestingSystem\TestingSystem.Models\bin\Debug\net8.0\TestingSystem.Data.runtimeconfig.json
+D:\.NET Project\TestingSystem\TestingSystem.Models\bin\Debug\net8.0\TestingSystem.Data.dll
+D:\.NET Project\TestingSystem\TestingSystem.Models\bin\Debug\net8.0\TestingSystem.Data.pdb
+D:\.NET Project\TestingSystem\TestingSystem.Models\bin\Debug\net8.0\TestingSystem.Utilities.dll
+D:\.NET Project\TestingSystem\TestingSystem.Models\bin\Debug\net8.0\TestingSystem.Utilities.pdb
+D:\.NET Project\TestingSystem\TestingSystem.Models\obj\Debug\net8.0\TestingSystem.Data.csproj.AssemblyReference.cache
+D:\.NET Project\TestingSystem\TestingSystem.Models\obj\Debug\net8.0\TestingSystem.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\.NET Project\TestingSystem\TestingSystem.Models\obj\Debug\net8.0\TestingSystem.Data.AssemblyInfoInputs.cache
+D:\.NET Project\TestingSystem\TestingSystem.Models\obj\Debug\net8.0\TestingSystem.Data.AssemblyInfo.cs
+D:\.NET Project\TestingSystem\TestingSystem.Models\obj\Debug\net8.0\TestingSystem.Data.csproj.CoreCompileInputs.cache
+D:\.NET Project\TestingSystem\TestingSystem.Models\obj\Debug\net8.0\TestingSystem.Data.csproj.CopyComplete
+D:\.NET Project\TestingSystem\TestingSystem.Models\obj\Debug\net8.0\TestingSystem.Data.dll
+D:\.NET Project\TestingSystem\TestingSystem.Models\obj\Debug\net8.0\refint\TestingSystem.Data.dll
+D:\.NET Project\TestingSystem\TestingSystem.Models\obj\Debug\net8.0\TestingSystem.Data.pdb
+D:\.NET Project\TestingSystem\TestingSystem.Models\obj\Debug\net8.0\TestingSystem.Data.genruntimeconfig.cache
+D:\.NET Project\TestingSystem\TestingSystem.Models\obj\Debug\net8.0\ref\TestingSystem.Data.dll
