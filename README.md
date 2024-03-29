@@ -18,12 +18,14 @@ Set up the database:
 
 Create a database named TestingSystemDb in SQL Server.
 Copy the connection string and paste it into TestingSystem.Admin/appsettings.json for the TestingSystemDb connection and TestingSystem.Web/appsettings.json for the TestingSystemDb connection.
+
 Apply database migrations:
 
 Open the Package Manager Console (PMC) in your IDE.
 Set the Default Project in the Package Manager Console Window to TestingSystem.Data.
 Apply any pending migrations and update the database by running the following command in PMC:
 update-database
+
 Set up startup projects:
 
 Set both TestingSystem.Admin and TestingSystem.Web projects as startup projects in your IDE. These projects represent the admin and web user interfaces, respectively.
