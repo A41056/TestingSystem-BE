@@ -1,0 +1,105 @@
+# Visual Studio temporary files
+.vs/
+
+# Rider
+.idea/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Compiled files
+bin/
+obj/
+
+# NuGet packages
+*.nuget.props
+*.nuget.targets
+packages/
+
+# Visual Studio Code
+.vscode/
+
+# ReSharper
+_ReSharper*/
+
+# ReSharper Cache
+*.resharper
+*.resharper.user
+
+# NCrunch
+_NCrunch_*
+
+# DotCover
+*.dotCover
+
+# AxoCover
+.axoCover/*
+!.axoCover/settings.json
+
+# Coverlet
+coverage/
+
+# Reports
+*.scoverdata
+*.scoverage
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio profiling
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# Visual Studio Trace Files
+*.e2e
+
+# Rider
+.idea/
+
+# SonarQube
+.sonar/
+
+# Resharper
+_ReSharper*/
+
+# Team Explorer
+[Tt]eam[Tt]asks/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUnit
+*.VisualState.xml
+TestResult.xml
+
+# Build Results of an ATL Project
+[Dd]ebugPS/
+[Rr]eleasePS/
+dlldata.c
+
+# Benchmark Results
+BenchmarkDotNet.Artifacts/
+
+# Publish or Web
+*.Publish.xml
+*.pubxml
+*.pfx
+/.vs/ProjectEvaluation/testingsystem.metadata.v7.bin
