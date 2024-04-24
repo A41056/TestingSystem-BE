@@ -103,3 +103,5 @@ BenchmarkDotNet.Artifacts/
 *.pubxml
 *.pfx
 /.vs/ProjectEvaluation/testingsystem.metadata.v7.bin
+
+.vsdix

@@ -695,6 +695,19 @@
           }
         }
       },
+      "Newtonsoft.Json/13.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.5.0": {
         "type": "package",
         "dependencies": {
@@ -1202,6 +1215,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+          "Newtonsoft.Json": "13.0.3",
           "System.IdentityModel.Tokens.Jwt": "6.35.0",
           "TestingSystem.Data": "1.0.0",
           "TestingSystem.Utilities": "1.0.0"
@@ -2459,6 +2473,36 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Newtonsoft.Json/13.0.3": {
+      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.5.0": {
       "sha512": "FK05XokgjgwlCI6wCT+D4/abtQkL1X1/B9Oas6uIwHFmYrIO9WUD5aLC9IzMs9GnHfUXOtXZ2S43gN1mhs5+aA==",
       "type": "package",
@@ -3318,8 +3362,8 @@
     },
     "TestingSystem.Data/1.0.0": {
       "type": "project",
-      "path": "../TestingSystem.Models/TestingSystem.Data.csproj",
-      "msbuildProject": "../TestingSystem.Models/TestingSystem.Data.csproj"
+      "path": "../TestingSystem.Data/TestingSystem.Data.csproj",
+      "msbuildProject": "../TestingSystem.Data/TestingSystem.Data.csproj"
     },
     "TestingSystem.Infrastructure/1.0.0": {
       "type": "project",
@@ -3341,23 +3385,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\giapp\\.nuget\\packages\\": {},
+    "C:\\Users\\Admin\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\.NET Project\\TestingSystem\\TestingSystem.Web\\TestingSystem.Web.csproj",
+      "projectUniqueName": "C:\\Project\\TestingSystem\\TestingSystem-BE\\TestingSystem.Web\\TestingSystem.Web.csproj",
       "projectName": "TestingSystem.Web",
-      "projectPath": "D:\\.NET Project\\TestingSystem\\TestingSystem.Web\\TestingSystem.Web.csproj",
-      "packagesPath": "C:\\Users\\giapp\\.nuget\\packages\\",
-      "outputPath": "D:\\.NET Project\\TestingSystem\\TestingSystem.Web\\obj\\",
+      "projectPath": "C:\\Project\\TestingSystem\\TestingSystem-BE\\TestingSystem.Web\\TestingSystem.Web.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Project\\TestingSystem\\TestingSystem-BE\\TestingSystem.Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\giapp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3366,19 +3410,17 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.pkg.github.com/Smartspace-ai/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\.NET Project\\TestingSystem\\TestingSystem.Core\\TestingSystem.Core.csproj": {
-              "projectPath": "D:\\.NET Project\\TestingSystem\\TestingSystem.Core\\TestingSystem.Core.csproj"
+            "C:\\Project\\TestingSystem\\TestingSystem-BE\\TestingSystem.Core\\TestingSystem.Core.csproj": {
+              "projectPath": "C:\\Project\\TestingSystem\\TestingSystem-BE\\TestingSystem.Core\\TestingSystem.Core.csproj"
             },
-            "D:\\.NET Project\\TestingSystem\\TestingSystem.Models\\TestingSystem.Data.csproj": {
-              "projectPath": "D:\\.NET Project\\TestingSystem\\TestingSystem.Models\\TestingSystem.Data.csproj"
+            "C:\\Project\\TestingSystem\\TestingSystem-BE\\TestingSystem.Data\\TestingSystem.Data.csproj": {
+              "projectPath": "C:\\Project\\TestingSystem\\TestingSystem-BE\\TestingSystem.Data\\TestingSystem.Data.csproj"
             }
           }
         }
@@ -3387,6 +3429,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -3421,7 +3468,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

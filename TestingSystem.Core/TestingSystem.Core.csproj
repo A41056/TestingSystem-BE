@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TestingSystem.Infrastructure\TestingSystem.Infrastructure.csproj" />
-    <ProjectReference Include="..\TestingSystem.Models\TestingSystem.Data.csproj" />
+    <ProjectReference Include="..\TestingSystem.Data\TestingSystem.Data.csproj" />
     <ProjectReference Include="..\TestingSystem.Utilities\TestingSystem.Utilities.csproj" />
   </ItemGroup>
 

@@ -17,7 +17,7 @@ namespace TestingSystem.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.3")
+                .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -57,6 +57,292 @@ namespace TestingSystem.Data.Migrations
                     b.ToTable("Answers", (string)null);
                 });
 
+            modelBuilder.Entity("TestingSystem.Data.Entities.Category.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("CategoryType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Identifier")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ImageFileId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LinkUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NameNoneAscii")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ParentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("Categories", (string)null);
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Category.CategoryTranslation", b =>
+                {
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LanguageCode")
+                        .IsRequired()
+                        .HasColumnType("varchar(5)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("LanguageCode");
+
+                    b.ToTable("CategoryTranslation", (string)null);
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Course.Course", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AuthorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CourseImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("CourseTeacherId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FullTextSearch")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsHot")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NameNonAscii")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<short>("ProductType")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("Status")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("Tags")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("CourseTeacherId");
+
+                    b.ToTable("Courses", (string)null);
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Course.CourseDetail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("CourseDetails", (string)null);
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Course.CourseDetailTranslation", b =>
+                {
+                    b.Property<Guid>("CourseDetailId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LanguageCode")
+                        .IsRequired()
+                        .HasColumnType("varchar(5)");
+
+                    b.Property<string>("TabName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CourseDetailId");
+
+                    b.HasIndex("CourseDetailId");
+
+                    b.HasIndex("LanguageCode");
+
+                    b.ToTable("CourseDetailTranslations", (string)null);
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Course.CourseTeacher", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AvatarUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("CourseTeachers", (string)null);
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Course.CourseTeacherTranslation", b =>
+                {
+                    b.Property<Guid>("CourseTeacherId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LanguageCode")
+                        .IsRequired()
+                        .HasColumnType("varchar(5)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("University")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CourseTeacherId");
+
+                    b.HasIndex("CourseTeacherId");
+
+                    b.HasIndex("LanguageCode");
+
+                    b.ToTable("CourseTeacherTranslations", (string)null);
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Course.CourseTranslation", b =>
+                {
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LanguageCode")
+                        .IsRequired()
+                        .HasColumnType("varchar(5)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumberOfAssignment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumberOfStudent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumberOfVideo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CourseId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("LanguageCode");
+
+                    b.ToTable("CourseTranslations", (string)null);
+                });
+
             modelBuilder.Entity("TestingSystem.Data.Entities.Exam", b =>
                 {
                     b.Property<Guid>("ExamId")
@@ -93,6 +379,125 @@ namespace TestingSystem.Data.Migrations
                     b.HasIndex("ExamId");
 
                     b.ToTable("Exams", (string)null);
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.LanguageTag", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasMaxLength(5)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(5)");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.HasKey("Code");
+
+                    b.ToTable("LanguageTags", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Code = "vi-VN",
+                            Created = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(6066),
+                            IsActive = true,
+                            IsDefault = true,
+                            Name = "VietNam",
+                            SortOrder = 0
+                        },
+                        new
+                        {
+                            Code = "en-EN",
+                            Created = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(6069),
+                            IsActive = true,
+                            IsDefault = false,
+                            Name = "English",
+                            SortOrder = 1
+                        },
+                        new
+                        {
+                            Code = "ru-RU",
+                            Created = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(6071),
+                            IsActive = true,
+                            IsDefault = false,
+                            Name = "Russia",
+                            SortOrder = 2
+                        });
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Lession", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VideoUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Lessions", (string)null);
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.LessionTranslation", b =>
+                {
+                    b.Property<Guid>("LessionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LanguageCode")
+                        .IsRequired()
+                        .HasColumnType("varchar(5)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LessionId");
+
+                    b.HasIndex("LanguageCode");
+
+                    b.HasIndex("LessionId");
+
+                    b.ToTable("LessionTranslations", (string)null);
                 });
 
             modelBuilder.Entity("TestingSystem.Data.Entities.Question", b =>
@@ -242,10 +647,10 @@ namespace TestingSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e0529d58-73e0-4b35-b93e-6675b23c39ed"),
+                            Id = new Guid("f07d2bff-3cf2-4984-bd3c-16e92f8ccb05"),
                             AccessFailedCount = (short)0,
                             BirthDay = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Created = new DateTime(2024, 3, 26, 15, 59, 16, 528, DateTimeKind.Utc).AddTicks(8611),
+                            Created = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(5942),
                             Deleted = false,
                             Email = "admin@example.com",
                             FirstName = "AdminFirstName",
@@ -254,19 +659,19 @@ namespace TestingSystem.Data.Migrations
                             Gender = "Male",
                             IsActive = true,
                             LastName = "AdminLastName",
-                            Modified = new DateTime(2024, 3, 26, 15, 59, 16, 528, DateTimeKind.Utc).AddTicks(8615),
-                            PasswordHash = new byte[] { 5, 29, 138, 124, 236, 91, 192, 82, 215, 180, 91, 175, 97, 107, 43, 8, 76, 103, 239, 226, 77, 144, 200, 74, 229, 59, 21, 77, 18, 141, 159, 83, 171, 193, 42, 57, 207, 106, 30, 210, 196, 33, 72, 189, 225, 121, 192, 202, 214, 17, 58, 59, 181, 57, 151, 154, 62, 251, 54, 17, 205, 39, 31, 8 },
-                            PasswordSalt = new byte[] { 53, 51, 184, 160, 119, 165, 113, 169, 72, 104, 154, 175, 25, 208, 194, 215, 215, 209, 188, 99, 108, 48, 209, 229, 29, 144, 200, 66, 143, 102, 228, 241, 105, 55, 64, 151, 106, 82, 209, 91, 157, 117, 59, 156, 236, 147, 224, 57, 96, 97, 255, 140, 182, 122, 97, 134, 212, 33, 49, 89, 50, 84, 134, 69, 48, 129, 108, 57, 254, 62, 129, 252, 29, 229, 71, 119, 129, 121, 92, 189, 17, 247, 159, 108, 35, 137, 173, 0, 59, 120, 86, 101, 118, 197, 247, 219, 237, 199, 24, 14, 100, 103, 92, 112, 161, 122, 34, 18, 179, 52, 137, 108, 213, 239, 108, 203, 207, 5, 238, 92, 182, 0, 199, 215, 23, 113, 139, 241 },
+                            Modified = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(5944),
+                            PasswordHash = new byte[] { 67, 8, 42, 12, 237, 24, 145, 145, 25, 134, 110, 126, 226, 156, 187, 122, 69, 230, 137, 122, 180, 253, 181, 164, 87, 54, 251, 252, 68, 132, 130, 195, 9, 202, 107, 18, 183, 249, 145, 180, 177, 239, 210, 22, 4, 233, 78, 181, 176, 23, 232, 27, 55, 9, 29, 231, 1, 116, 1, 162, 143, 38, 146, 211 },
+                            PasswordSalt = new byte[] { 233, 177, 51, 191, 90, 118, 253, 62, 25, 101, 81, 217, 102, 6, 164, 191, 188, 107, 24, 242, 108, 53, 250, 167, 98, 224, 12, 223, 52, 164, 240, 194, 227, 160, 77, 49, 191, 56, 79, 193, 173, 141, 150, 255, 95, 128, 145, 53, 204, 133, 110, 108, 141, 0, 155, 119, 27, 134, 167, 129, 240, 115, 220, 233, 57, 247, 157, 10, 197, 242, 125, 180, 2, 152, 232, 37, 0, 142, 242, 254, 200, 192, 171, 2, 153, 44, 113, 223, 130, 208, 60, 22, 113, 205, 112, 125, 27, 95, 232, 60, 10, 194, 190, 247, 173, 146, 230, 69, 241, 96, 234, 246, 195, 175, 181, 104, 196, 168, 250, 76, 243, 250, 206, 196, 59, 129, 20, 84 },
                             PhoneNumber = "1234567890",
-                            RoleId = new Guid("d39c0f72-689c-4880-aba3-a5d4082d0ae9"),
+                            RoleId = new Guid("74c33832-9368-4283-bd3e-2e32ab937b38"),
                             UserName = "admin"
                         },
                         new
                         {
-                            Id = new Guid("8e98c066-a5ef-4cb1-9cf8-fb19359c57b1"),
+                            Id = new Guid("37b24c00-f4d3-4517-bd4a-387f3bbc811f"),
                             AccessFailedCount = (short)0,
                             BirthDay = new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Created = new DateTime(2024, 3, 26, 15, 59, 16, 528, DateTimeKind.Utc).AddTicks(8690),
+                            Created = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(5990),
                             Deleted = false,
                             Email = "teacher@example.com",
                             FirstName = "TeacherFirstName",
@@ -275,19 +680,19 @@ namespace TestingSystem.Data.Migrations
                             Gender = "Female",
                             IsActive = true,
                             LastName = "TeacherLastName",
-                            Modified = new DateTime(2024, 3, 26, 15, 59, 16, 528, DateTimeKind.Utc).AddTicks(8691),
-                            PasswordHash = new byte[] { 250, 187, 3, 79, 232, 79, 113, 206, 112, 134, 86, 171, 81, 91, 247, 35, 233, 87, 131, 130, 170, 157, 165, 61, 157, 66, 110, 238, 91, 16, 70, 159, 65, 186, 107, 215, 131, 192, 249, 115, 244, 27, 129, 102, 21, 175, 45, 124, 31, 54, 106, 207, 233, 222, 40, 198, 36, 58, 32, 2, 206, 158, 255, 120 },
-                            PasswordSalt = new byte[] { 201, 123, 64, 176, 35, 128, 32, 244, 40, 133, 46, 184, 183, 126, 82, 199, 37, 249, 6, 20, 220, 33, 252, 72, 189, 9, 142, 101, 112, 66, 168, 206, 157, 119, 60, 54, 138, 195, 222, 3, 35, 250, 124, 233, 150, 80, 51, 127, 201, 160, 242, 201, 114, 195, 50, 32, 128, 184, 218, 108, 186, 171, 52, 143, 226, 174, 195, 64, 173, 7, 246, 97, 121, 53, 199, 57, 28, 242, 111, 25, 216, 84, 251, 184, 42, 39, 147, 34, 148, 223, 88, 49, 79, 209, 243, 251, 164, 164, 85, 151, 202, 176, 84, 175, 141, 135, 19, 126, 94, 136, 32, 226, 46, 28, 243, 65, 157, 197, 143, 37, 96, 20, 246, 166, 210, 116, 136, 118 },
+                            Modified = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(5991),
+                            PasswordHash = new byte[] { 223, 201, 102, 123, 75, 173, 190, 100, 246, 192, 19, 11, 235, 249, 107, 71, 92, 143, 178, 34, 9, 1, 168, 121, 130, 90, 104, 118, 203, 248, 87, 197, 153, 17, 205, 207, 52, 35, 102, 204, 160, 22, 1, 180, 110, 68, 92, 171, 9, 23, 201, 248, 138, 146, 116, 18, 69, 63, 139, 198, 196, 103, 250, 151 },
+                            PasswordSalt = new byte[] { 182, 49, 174, 186, 84, 41, 175, 8, 244, 11, 88, 24, 59, 59, 65, 47, 62, 135, 3, 218, 177, 130, 10, 67, 28, 93, 165, 208, 239, 148, 158, 51, 119, 105, 106, 6, 71, 227, 4, 231, 180, 121, 109, 93, 138, 53, 224, 221, 66, 203, 165, 175, 131, 172, 184, 245, 253, 201, 20, 197, 116, 234, 231, 33, 99, 9, 89, 27, 139, 219, 220, 163, 121, 231, 167, 154, 232, 2, 236, 114, 209, 37, 32, 143, 159, 228, 88, 131, 98, 132, 3, 170, 223, 193, 112, 140, 11, 144, 136, 86, 222, 217, 2, 79, 19, 98, 43, 120, 0, 48, 163, 125, 17, 228, 76, 111, 194, 248, 45, 175, 242, 51, 184, 133, 152, 35, 109, 197 },
                             PhoneNumber = "9876543210",
-                            RoleId = new Guid("b3da35e0-122f-4aa6-ac40-3980182d4bae"),
+                            RoleId = new Guid("8f726563-4622-44e9-99d2-bcbbcffbe1bd"),
                             UserName = "teacher"
                         },
                         new
                         {
-                            Id = new Guid("f4d99c13-6f71-4d0f-9ff8-816aaa04b9d3"),
+                            Id = new Guid("bef85b2a-d9c6-4fa6-a975-feb61d997889"),
                             AccessFailedCount = (short)0,
                             BirthDay = new DateTime(2000, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Created = new DateTime(2024, 3, 26, 15, 59, 16, 528, DateTimeKind.Utc).AddTicks(8730),
+                            Created = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(6025),
                             Deleted = false,
                             Email = "ronaldo@example.com",
                             FirstName = "Cristiano",
@@ -296,11 +701,11 @@ namespace TestingSystem.Data.Migrations
                             Gender = "Male",
                             IsActive = true,
                             LastName = "Ronaldo",
-                            Modified = new DateTime(2024, 3, 26, 15, 59, 16, 528, DateTimeKind.Utc).AddTicks(8730),
-                            PasswordHash = new byte[] { 12, 191, 201, 91, 227, 239, 228, 76, 27, 60, 110, 65, 148, 61, 5, 170, 249, 122, 42, 209, 46, 9, 190, 228, 166, 89, 115, 101, 229, 204, 135, 64, 161, 109, 239, 91, 235, 244, 42, 135, 148, 5, 144, 233, 249, 199, 83, 180, 55, 251, 113, 80, 111, 42, 146, 207, 166, 130, 114, 82, 141, 106, 229, 47 },
-                            PasswordSalt = new byte[] { 77, 103, 192, 31, 91, 103, 67, 113, 100, 196, 134, 14, 38, 125, 227, 47, 150, 102, 12, 193, 252, 129, 128, 196, 124, 96, 57, 215, 160, 148, 124, 196, 70, 127, 22, 147, 92, 207, 226, 255, 9, 217, 209, 168, 120, 157, 23, 233, 100, 114, 111, 113, 66, 45, 81, 185, 125, 249, 138, 46, 180, 103, 163, 219, 130, 14, 101, 135, 84, 149, 189, 232, 78, 181, 219, 236, 77, 228, 228, 170, 38, 201, 98, 234, 150, 64, 199, 118, 125, 62, 104, 35, 251, 68, 197, 61, 41, 128, 141, 187, 206, 226, 181, 253, 57, 153, 134, 97, 40, 19, 43, 224, 147, 16, 109, 2, 151, 138, 89, 39, 171, 103, 202, 135, 60, 26, 0, 103 },
+                            Modified = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(6025),
+                            PasswordHash = new byte[] { 170, 236, 76, 137, 170, 26, 3, 206, 177, 53, 137, 27, 38, 31, 169, 163, 152, 230, 31, 69, 91, 132, 11, 255, 19, 102, 222, 224, 202, 116, 26, 207, 155, 248, 216, 35, 183, 99, 88, 238, 122, 26, 204, 146, 41, 173, 63, 14, 93, 173, 112, 14, 36, 225, 1, 122, 157, 153, 233, 53, 98, 211, 1, 232 },
+                            PasswordSalt = new byte[] { 5, 180, 49, 221, 181, 196, 238, 67, 103, 155, 65, 96, 181, 236, 68, 17, 51, 100, 68, 80, 87, 198, 108, 217, 171, 201, 52, 77, 174, 22, 184, 137, 71, 68, 88, 47, 191, 218, 207, 49, 128, 111, 192, 38, 150, 86, 113, 148, 154, 135, 107, 24, 239, 122, 208, 209, 82, 82, 142, 139, 33, 1, 226, 104, 89, 245, 46, 244, 148, 244, 112, 50, 193, 71, 116, 41, 138, 208, 93, 26, 120, 211, 127, 14, 6, 196, 47, 52, 185, 60, 40, 33, 77, 234, 154, 247, 226, 52, 41, 123, 181, 211, 66, 145, 172, 161, 209, 94, 106, 210, 210, 92, 33, 202, 60, 10, 202, 3, 30, 223, 217, 132, 156, 126, 212, 225, 7, 78 },
                             PhoneNumber = "5555555555",
-                            RoleId = new Guid("2a03f8f6-db15-4fe7-97e4-9bac3339a472"),
+                            RoleId = new Guid("2e6b81d9-0ee1-495b-b6ab-11185b430191"),
                             UserName = "user"
                         });
                 });
@@ -325,17 +730,17 @@ namespace TestingSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            RoleId = new Guid("d39c0f72-689c-4880-aba3-a5d4082d0ae9"),
+                            RoleId = new Guid("74c33832-9368-4283-bd3e-2e32ab937b38"),
                             RoleName = "Admin"
                         },
                         new
                         {
-                            RoleId = new Guid("b3da35e0-122f-4aa6-ac40-3980182d4bae"),
+                            RoleId = new Guid("8f726563-4622-44e9-99d2-bcbbcffbe1bd"),
                             RoleName = "Teacher"
                         },
                         new
                         {
-                            RoleId = new Guid("2a03f8f6-db15-4fe7-97e4-9bac3339a472"),
+                            RoleId = new Guid("2e6b81d9-0ee1-495b-b6ab-11185b430191"),
                             RoleName = "User"
                         });
                 });
@@ -390,6 +795,118 @@ namespace TestingSystem.Data.Migrations
                     b.Navigation("Question");
                 });
 
+            modelBuilder.Entity("TestingSystem.Data.Entities.Category.CategoryTranslation", b =>
+                {
+                    b.HasOne("TestingSystem.Data.Entities.Category.Category", "Category")
+                        .WithMany("CategoryTranslations")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TestingSystem.Data.Entities.LanguageTag", "Language")
+                        .WithMany("CategoryTranslations")
+                        .HasForeignKey("LanguageCode")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Language");
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Course.Course", b =>
+                {
+                    b.HasOne("TestingSystem.Data.Entities.User", "Author")
+                        .WithMany("Courses")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TestingSystem.Data.Entities.Category.Category", "Category")
+                        .WithMany("Courses")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TestingSystem.Data.Entities.Course.CourseTeacher", "CourseTeacher")
+                        .WithMany("Courses")
+                        .HasForeignKey("CourseTeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("CourseTeacher");
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Course.CourseDetail", b =>
+                {
+                    b.HasOne("TestingSystem.Data.Entities.Course.Course", "Course")
+                        .WithMany("CourseDetails")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Course.CourseDetailTranslation", b =>
+                {
+                    b.HasOne("TestingSystem.Data.Entities.Course.CourseDetail", "CourseDetail")
+                        .WithMany("CourseDetailTranslations")
+                        .HasForeignKey("CourseDetailId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TestingSystem.Data.Entities.LanguageTag", "Language")
+                        .WithMany("CourseDetailTranslations")
+                        .HasForeignKey("LanguageCode")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CourseDetail");
+
+                    b.Navigation("Language");
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Course.CourseTeacherTranslation", b =>
+                {
+                    b.HasOne("TestingSystem.Data.Entities.Course.CourseTeacher", "CourseTeacher")
+                        .WithMany("CourseTeacherTranslations")
+                        .HasForeignKey("CourseTeacherId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TestingSystem.Data.Entities.LanguageTag", "Language")
+                        .WithMany("CourseTeacherTranslations")
+                        .HasForeignKey("LanguageCode")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CourseTeacher");
+
+                    b.Navigation("Language");
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Course.CourseTranslation", b =>
+                {
+                    b.HasOne("TestingSystem.Data.Entities.Course.Course", "Course")
+                        .WithMany("CourseTranslations")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TestingSystem.Data.Entities.LanguageTag", "Language")
+                        .WithMany("CourseTranslations")
+                        .HasForeignKey("LanguageCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Language");
+                });
+
             modelBuilder.Entity("TestingSystem.Data.Entities.Exam", b =>
                 {
                     b.HasOne("TestingSystem.Data.Entities.User", "Teacher")
@@ -399,6 +916,36 @@ namespace TestingSystem.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Lession", b =>
+                {
+                    b.HasOne("TestingSystem.Data.Entities.Course.Course", "Course")
+                        .WithMany("Lessions")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.LessionTranslation", b =>
+                {
+                    b.HasOne("TestingSystem.Data.Entities.LanguageTag", "Language")
+                        .WithMany("LessionTranslations")
+                        .HasForeignKey("LanguageCode")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TestingSystem.Data.Entities.Lession", "Lession")
+                        .WithMany("LessionTranslations")
+                        .HasForeignKey("LessionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Language");
+
+                    b.Navigation("Lession");
                 });
 
             modelBuilder.Entity("TestingSystem.Data.Entities.Question", b =>
@@ -474,11 +1021,57 @@ namespace TestingSystem.Data.Migrations
                     b.Navigation("WebUserChooses");
                 });
 
+            modelBuilder.Entity("TestingSystem.Data.Entities.Category.Category", b =>
+                {
+                    b.Navigation("CategoryTranslations");
+
+                    b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Course.Course", b =>
+                {
+                    b.Navigation("CourseDetails");
+
+                    b.Navigation("CourseTranslations");
+
+                    b.Navigation("Lessions");
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Course.CourseDetail", b =>
+                {
+                    b.Navigation("CourseDetailTranslations");
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Course.CourseTeacher", b =>
+                {
+                    b.Navigation("CourseTeacherTranslations");
+
+                    b.Navigation("Courses");
+                });
+
             modelBuilder.Entity("TestingSystem.Data.Entities.Exam", b =>
                 {
                     b.Navigation("Questions");
 
                     b.Navigation("Submissions");
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.LanguageTag", b =>
+                {
+                    b.Navigation("CategoryTranslations");
+
+                    b.Navigation("CourseDetailTranslations");
+
+                    b.Navigation("CourseTeacherTranslations");
+
+                    b.Navigation("CourseTranslations");
+
+                    b.Navigation("LessionTranslations");
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Lession", b =>
+                {
+                    b.Navigation("LessionTranslations");
                 });
 
             modelBuilder.Entity("TestingSystem.Data.Entities.Question", b =>
@@ -490,6 +1083,8 @@ namespace TestingSystem.Data.Migrations
 
             modelBuilder.Entity("TestingSystem.Data.Entities.User", b =>
                 {
+                    b.Navigation("Courses");
+
                     b.Navigation("Exams");
 
                     b.Navigation("Submissions");
