@@ -1,8 +1,8 @@
-﻿using Azure.Core;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using System.Text;
 using TestingSystem.Data.Entities;
+using TestingSystem.Data.Entities.Category;
+using TestingSystem.Data.Entities.Course;
 
 namespace TestingSystem.Data.Db;
 public class TestingSystemDbContext : DbContext
@@ -18,6 +18,17 @@ public class TestingSystemDbContext : DbContext
     public virtual DbSet<Answer> Answers { get; set; }
     public virtual DbSet<Submission> Submissions { get; set; }
     public virtual DbSet<WebUserChoose> WebUserChooses { get; set; }
+    public virtual DbSet<Category> Categories { get; set; }
+    public virtual DbSet<CategoryTranslation> CategoryTranslations { get; set; }
+    public virtual DbSet<Course> Courses { get; set; }
+    public virtual DbSet<CourseTranslation> CourseTranslations { get; set; }
+    public virtual DbSet<CourseDetail> CourseDetails { get; set; }
+    public virtual DbSet<CourseDetailTranslation> CourseDetailTranslations { get; set; }
+    public virtual DbSet<CourseTeacher> CourseTeachers { get; set; }
+    public virtual DbSet<CourseTeacherTranslation> CourseTeacherTranslations { get; set; }
+    public virtual DbSet<LanguageTag> LanguageTags { get; set; }
+    public virtual DbSet<Lession> Lessions { get; set; }
+    public virtual DbSet<LessionTranslation> LessionTranslations { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -106,6 +117,12 @@ public class TestingSystemDbContext : DbContext
                 Deleted = false,
                 AccessFailedCount = 0
             }
+        );
+
+        modelBuilder.Entity<LanguageTag>().HasData(
+            new LanguageTag { Code = "vi-VN", Name = "VietNam", IsActive = true, IsDefault = true, SortOrder = 0, Created = DateTime.UtcNow },
+            new LanguageTag { Code = "en-EN", Name = "English", IsActive = true, IsDefault = false, SortOrder = 1, Created = DateTime.UtcNow },
+            new LanguageTag {Code = "ru-RU", Name = "Russia", IsActive = true, IsDefault = false, SortOrder = 2, Created = DateTime.UtcNow }
         );
     }
 

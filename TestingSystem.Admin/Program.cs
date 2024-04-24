@@ -5,10 +5,24 @@ using Microsoft.OpenApi.Models;
 using System.Security.Claims;
 using System.Text;
 using TestingSystem.Core.Services.Implements;
+using TestingSystem.Core.Services.Implements.Category;
+using TestingSystem.Core.Services.Implements.Course;
+using TestingSystem.Core.Services.Implements.Language;
+using TestingSystem.Core.Services.Implements.Lession;
 using TestingSystem.Core.Services.Interfaces;
+using TestingSystem.Core.Services.Interfaces.Category;
+using TestingSystem.Core.Services.Interfaces.Course;
+using TestingSystem.Core.Services.Interfaces.Language;
+using TestingSystem.Core.Services.Interfaces.Lession;
 using TestingSystem.Data.Db;
 using TestingSystem.Infrastructure.Repositories.Implements;
+using TestingSystem.Infrastructure.Repositories.Implements.Category;
+using TestingSystem.Infrastructure.Repositories.Implements.Course;
+using TestingSystem.Infrastructure.Repositories.Implements.Lession;
 using TestingSystem.Infrastructure.Repositories.Interfaces;
+using TestingSystem.Infrastructure.Repositories.Interfaces.Category;
+using TestingSystem.Infrastructure.Repositories.Interfaces.Course;
+using TestingSystem.Infrastructure.Repositories.Interfaces.Lession;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -110,6 +124,10 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAnswerService, AnswerService>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
 builder.Services.AddScoped<IExamService, ExamService>();
+builder.Services.AddScoped<ICategoryService, CategorySerivce>();
+builder.Services.AddScoped<ICourseService, CourseService>();
+builder.Services.AddScoped<ILanguageService, LanguageService>();
+builder.Services.AddScoped<ILessionService, LessionService>();
 
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
@@ -117,6 +135,21 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAnswerRepository, AnswerRepository>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<IExamRepository, ExamRepository>();
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryTranslationRepository, CategoryTranslationRepository>();
+
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<ICourseTranslationRepository, CourseTranslationRepository>();
+builder.Services.AddScoped<ICourseDetailRepository, CourseDetailRepository>();
+builder.Services.AddScoped<ICourseDetailTranslationRepository, CourseDetailTranslationRepository>();
+builder.Services.AddScoped<ICourseTeacherRepository, CourseTeacherRepository>();
+builder.Services.AddScoped<ICourseTeacherTranslationRepository, CourseTeacherTranslationRepository>();
+
+builder.Services.AddScoped<ILessionRepository, LessionRepository>();
+builder.Services.AddScoped<ILessionTranslationRepository, LessionTranslationRepository>();
+
+builder.Services.AddScoped<ILanguageTagRepository, LanguageTagRepository>();
 
 var app = builder.Build();
 
