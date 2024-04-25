@@ -24,5 +24,7 @@ public class User
     public ICollection<Exam> Exams { get; set; }
     public ICollection<Submission> Submissions { get; set; }
     public ICollection<Course.Course> Courses { get; set; }
+    public ICollection<Course.CourseTeacher> CourseTeachers { get; set; }
+
 
 }

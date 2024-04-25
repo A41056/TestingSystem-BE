@@ -4,9 +4,8 @@ using TestingSystem.Core.Services.Interfaces;
 using TestingSystem.Data.Models;
 
 namespace TestingSystem.Admin.Controllers;
-[Route("api/[controller]")]
-[ApiController]
-[Authorize(Roles = "Admin, Teacher")]
+
+[Authorize]
 public class AuthController : BaseController
 {
     private readonly IAuthService _authService;

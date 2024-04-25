@@ -80,6 +80,7 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Category
         {
             var categoryTrans = new CategoryTranslation()
             {
+                Id = Guid.NewGuid(),
                 CategoryId = categoryId,
                 Name = model.Name,
                 LanguageCode = model.LanguageCode,
@@ -91,9 +92,9 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Category
             await SaveChangeAsync();
         }
 
-        public async Task UpdateTranslationAsync(Guid categoryId, CategoryTranslationDto model)
+        public async Task UpdateTranslationAsync(Guid id, CategoryTranslationDto model)
         {
-            var ct = await DbSet.FirstOrDefaultAsync(ct => ct.CategoryId == categoryId);
+            var ct = await DbSet.FirstOrDefaultAsync(ct => ct.Id == id);
 
             if (ct != null)
             {

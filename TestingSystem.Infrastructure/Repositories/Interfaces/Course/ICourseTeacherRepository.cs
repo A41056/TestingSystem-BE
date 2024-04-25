@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestingSystem.Data.Models.Course;
+﻿using TestingSystem.Data.Models.Course;
 
 namespace TestingSystem.Infrastructure.Repositories.Interfaces.Course
 {
     public interface ICourseTeacherRepository : IBaseRepository<Data.Entities.Course.CourseTeacher>
     {
-        Task InsertAsync(Guid teacherId, CourseTeacherDto model);
+        Task InsertAsync(Guid teacherId, CourseTeacherInsertDto model);
 
         Task UpdateAsync(Guid teacherId, CourseTeacherUpdateModel model);
 

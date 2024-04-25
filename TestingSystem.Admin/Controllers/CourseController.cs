@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestingSystem.Core.Services.Interfaces.Course;
+using TestingSystem.Data.Common;
 using TestingSystem.Data.Models.Course;
 
 namespace TestingSystem.Admin.Controllers
@@ -26,10 +27,18 @@ namespace TestingSystem.Admin.Controllers
             return Ok(course);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> InsertCourse(Guid courseId, CourseInfoDto model)
+        [HttpGet]
+        public async Task<IActionResult> GetListCourseAsync([FromQuery]SearchingCourseRequest request)
         {
-            await _courseService.InsertCourseAsync(courseId, model);
+            var course = await _courseService.GetListCourseAsync(request);
+            return Ok(course);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> InsertCourse(CourseInsertDto model)
+        {
+            var courseId = Guid.NewGuid();
+            await _courseService.InsertCourseAsync(Guid.NewGuid(), model);
             return Ok();
         }
 
@@ -76,7 +85,7 @@ namespace TestingSystem.Admin.Controllers
         }
 
         [HttpPost("{teacherId}")]
-        public async Task<IActionResult> InsertTeacher(Guid teacherId, CourseTeacherDto model)
+        public async Task<IActionResult> InsertTeacher(Guid teacherId, CourseTeacherInsertDto model)
         {
             await _courseService.InsertTeacherAsync(teacherId, model);
             return Ok();

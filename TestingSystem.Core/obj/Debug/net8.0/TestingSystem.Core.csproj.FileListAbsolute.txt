@@ -19,9 +19,6 @@ D:\.NET Project\TestingSystem\TestingSystem.Core\obj\Debug\net8.0\refint\Testing
 D:\.NET Project\TestingSystem\TestingSystem.Core\obj\Debug\net8.0\TestingSystem.Core.pdb
 D:\.NET Project\TestingSystem\TestingSystem.Core\obj\Debug\net8.0\TestingSystem.Core.genruntimeconfig.cache
 D:\.NET Project\TestingSystem\TestingSystem.Core\obj\Debug\net8.0\ref\TestingSystem.Core.dll
-C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Core\obj\Debug\net8.0\TestingSystem.Core.dll
-C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Core\obj\Debug\net8.0\refint\TestingSystem.Core.dll
-C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Core\obj\Debug\net8.0\TestingSystem.Core.pdb
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Core\bin\Debug\net8.0\TestingSystem.Core.deps.json
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Core\bin\Debug\net8.0\TestingSystem.Core.runtimeconfig.json
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Core\bin\Debug\net8.0\TestingSystem.Core.dll
@@ -39,5 +36,8 @@ C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Core\obj\Debug\net8.0\Te
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Core\obj\Debug\net8.0\TestingSystem.Core.csproj.CoreCompileInputs.cache
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Core\obj\Debug\net8.0\TestingSystem.Core.sourcelink.json
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Core\obj\Debug\net8.0\TestingS.7B8AD5F4.Up2Date
+C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Core\obj\Debug\net8.0\TestingSystem.Core.dll
+C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Core\obj\Debug\net8.0\refint\TestingSystem.Core.dll
+C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Core\obj\Debug\net8.0\TestingSystem.Core.pdb
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Core\obj\Debug\net8.0\TestingSystem.Core.genruntimeconfig.cache
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Core\obj\Debug\net8.0\ref\TestingSystem.Core.dll

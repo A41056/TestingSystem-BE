@@ -7,7 +7,7 @@ namespace TestingSystem.Infrastructure.Repositories.Interfaces.Course
     {
         Task<CourseInfoDto> GetCourseByIdAsync(Guid id);
         Task<PaginatedResponseModel<CourseInfoDto>> GetListCourseAsync(SearchingCourseRequest request);
-        Task InsertAsync(Guid courseId, CourseInfoDto model);
+        Task InsertAsync(Guid courseId, CourseInsertDto model);
         Task UpdateAsync(Guid courseId, CourseInfoDto model);
         Task DeleteAsync(Guid courseId);
     }

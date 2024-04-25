@@ -1,19 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TestingSystem.Core.Services.Implements;
 using TestingSystem.Data.Common;
 using TestingSystem.Data.Entities;
 using TestingSystem.Data.Models.Submission;
-using TestingSystem.Infrastructure.Repositories.Interfaces;
 
+//Admin
 namespace TestingSystem.Admin.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    [Authorize(Roles = "Admin, Teacher")]
-    public class SubmissionController : ControllerBase
+    public class SubmissionController : BaseController
     {
         private readonly SubmissionService _submissionService;
 
@@ -33,17 +27,18 @@ namespace TestingSystem.Admin.Controllers
             return submission;
         }
 
+
         [HttpPost("submit")]
         public async Task<IActionResult> Submit(SubmissionDto request)
         {
             try
             {
                 var submission = await _submissionService.Submit(request);
-                return Ok(submission);
+                return CreatedAtAction(nameof(GetSubmission), new { id = submission.Id }, submission);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error: {ex.Message}");
             }
         }
 
@@ -53,6 +48,14 @@ namespace TestingSystem.Admin.Controllers
             var submissions = await _submissionService.GetListSubmitOfUser(request);
 
             return Ok(submissions);
+        }
+
+        [HttpGet("getSubmissions")]
+        public async Task<IActionResult> GetSubmissionByUserId([FromQuery] SearchingSubmitRequest request)
+        {
+            var result = await _submissionService.GetListSubmitOfUser(request);
+
+            return Ok(result);
         }
     }
 }

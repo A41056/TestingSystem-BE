@@ -16,9 +16,9 @@ namespace TestingSystem.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> InsertCategory(Guid categoryId, CategoryDto model)
+        public async Task<IActionResult> InsertCategory(CategoryDto model)
         {
-            await _categoryService.InsertAsync(categoryId, model);
+            await _categoryService.InsertAsync(Guid.NewGuid(), model);
             return Ok();
         }
 
@@ -34,6 +34,13 @@ namespace TestingSystem.Admin.Controllers
         {
             var categoryList = await _categoryService.GetCategoryListAsync();
             return Ok(categoryList);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CategoryDto>> GetCategoryById(Guid id)
+        {
+            var category = await _categoryService.GetCategoryById(id);
+            return Ok(category);
         }
 
         [HttpPut("{categoryId}")]

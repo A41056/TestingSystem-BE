@@ -119,7 +119,7 @@ namespace TestingSystem.Core.Services.Implements.Course
             throw new NotImplementedException();
         }
 
-        public async Task InsertCourseAsync(Guid courseId, CourseInfoDto model)
+        public async Task InsertCourseAsync(Guid courseId, CourseInsertDto model)
         {
             await _courseRepository.InsertAsync(courseId, model);
         }
@@ -129,7 +129,7 @@ namespace TestingSystem.Core.Services.Implements.Course
             await _courseDetailTranslationRepository.InsertTranslationAsync(courseDetailId, model);
         }
 
-        public async Task InsertTeacherAsync(Guid teacherId, CourseTeacherDto model)
+        public async Task InsertTeacherAsync(Guid teacherId, CourseTeacherInsertDto model)
         {
             await _courseTeacherRepository.InsertAsync(teacherId, model);
         }

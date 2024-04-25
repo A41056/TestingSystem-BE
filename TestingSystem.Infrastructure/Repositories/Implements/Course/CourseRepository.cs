@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using System.Linq.Expressions;
 using TestingSystem.Data.Common;
 using TestingSystem.Data.Db;
-using TestingSystem.Data.Entities.Course;
 using TestingSystem.Data.Models.Course;
 using TestingSystem.Infrastructure.Repositories.Interfaces;
 using TestingSystem.Infrastructure.Repositories.Interfaces.Course;
@@ -14,11 +13,16 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Course
     {
         private readonly ICourseDetailRepository _courseDetailRepository;
         private readonly ILanguageTagRepository _languageTagRepository;
+        private readonly ICourseTeacherRepository _courseTeacherRepository;
 
-        public CourseRepository(TestingSystemDbContext dbContext, ILanguageTagRepository languageTagRepository, ICourseDetailRepository courseDetailRepository) : base(dbContext)
+        public CourseRepository(TestingSystemDbContext dbContext, 
+            ILanguageTagRepository languageTagRepository, 
+            ICourseDetailRepository courseDetailRepository,
+            ICourseTeacherRepository courseTeacherRepository) : base(dbContext)
         {
             _courseDetailRepository = courseDetailRepository;
             _languageTagRepository = languageTagRepository;
+            _courseTeacherRepository = courseTeacherRepository;
         }
 
         public async Task DeleteAsync(Guid courseId)
@@ -41,7 +45,6 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Course
                 Created = course.Created,
                 Modified = course.Modified,
                 NameNonAscii = course.NameNonAscii,
-                ProductType = (short)course.ProductType,
                 IsHot = course.IsHot.GetValueOrDefault(),
             };
         }
@@ -59,7 +62,14 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Course
             Func<IQueryable<Data.Entities.Course.Course>, IOrderedQueryable<Data.Entities.Course.Course>> orderBy = query => query.OrderBy(x => x.Created);
 
             var paginationSet = await GetPaginatedDataByRequest(request, filter, orderBy,
-                c => c.CourseTranslations.Where(ct => ct.LanguageCode == defaultLanguageCode.Code && ct.CourseId == c.Id));
+                includes: new Expression<Func<Data.Entities.Course.Course, object>>[]
+                {
+                    c => c.CourseTranslations
+                }
+                );
+
+            var filteredCourses = paginationSet.Data.Where(course =>
+                    course.CourseTranslations.Any(translation => translation.LanguageCode == defaultLanguageCode.Code));
 
             foreach (var item in paginationSet.Data)
             {
@@ -72,9 +82,7 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Course
                     NameNonAscii = item.NameNonAscii,
                     IsHot = item.IsHot,
                     Tags = item.Tags,
-                    ProductType = item.ProductType,
                     CourseImageUrl = item.CourseImageUrl,
-                    FullTextSearch = item.FullTextSearch,
                     Created = item.Created,
                     Modified = item.Modified,
                 });
@@ -85,18 +93,18 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Course
             return mappedPaginationSet;
         }
 
-        public async Task InsertAsync(Guid courseId, CourseInfoDto model)
+        public async Task InsertAsync(Guid courseId, CourseInsertDto model)
         {
+            await _courseTeacherRepository.InsertAsync(model.CourseTeacherInsertDto.TeacherId.GetValueOrDefault(), model.CourseTeacherInsertDto);
             var course = new Data.Entities.Course.Course()
             {
                 Id = courseId,
-                Status = model.Status,
+                Status = model.Status.GetValueOrDefault(),
                 CategoryId = model.CategoryId,
                 NameNonAscii = model.NameNonAscii,
-                FullTextSearch = model.FullTextSearch,
-                ProductType = (short)model.ProductType,
                 IsHot = model.IsHot,
-                Tags = JsonConvert.SerializeObject(model.Tags)
+                Tags = JsonConvert.SerializeObject(model.Tags),
+                FullTextSearch = model.NameNonAscii
             };
 
             await DbSet.AddAsync(course);
@@ -112,13 +120,11 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Course
             {
                 course.CategoryId = model.CategoryId;
                 course.AuthorId = model.AuthorId;
-                course.Status = model.Status;
+                course.Status = model.Status.GetValueOrDefault();
                 course.NameNonAscii = model.NameNonAscii;
                 course.IsHot = model.IsHot;
                 course.Tags = model.Tags;
-                course.ProductType = model.ProductType;
                 course.CourseImageUrl = model.CourseImageUrl;
-                course.FullTextSearch = model.FullTextSearch;
                 course.Modified = DateTime.UtcNow;
 
                 await SaveChangeAsync();

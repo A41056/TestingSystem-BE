@@ -63,31 +63,14 @@ namespace TestingSystem.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("CategoryType")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Identifier")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("ImageFileId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
-
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LinkUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -95,9 +78,6 @@ namespace TestingSystem.Data.Migrations
                     b.Property<string>("NameNoneAscii")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("ParentId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("SortOrder")
                         .HasColumnType("int");
@@ -111,6 +91,10 @@ namespace TestingSystem.Data.Migrations
 
             modelBuilder.Entity("TestingSystem.Data.Entities.Category.CategoryTranslation", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
@@ -126,7 +110,7 @@ namespace TestingSystem.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
@@ -268,9 +252,14 @@ namespace TestingSystem.Data.Migrations
                     b.Property<int?>("SortOrder")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("TeacherId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
+
+                    b.HasIndex("TeacherId");
 
                     b.ToTable("CourseTeachers", (string)null);
                 });
@@ -415,7 +404,7 @@ namespace TestingSystem.Data.Migrations
                         new
                         {
                             Code = "vi-VN",
-                            Created = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(6066),
+                            Created = new DateTime(2024, 4, 25, 10, 1, 53, 535, DateTimeKind.Utc).AddTicks(7761),
                             IsActive = true,
                             IsDefault = true,
                             Name = "VietNam",
@@ -424,7 +413,7 @@ namespace TestingSystem.Data.Migrations
                         new
                         {
                             Code = "en-EN",
-                            Created = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(6069),
+                            Created = new DateTime(2024, 4, 25, 10, 1, 53, 535, DateTimeKind.Utc).AddTicks(7764),
                             IsActive = true,
                             IsDefault = false,
                             Name = "English",
@@ -433,7 +422,7 @@ namespace TestingSystem.Data.Migrations
                         new
                         {
                             Code = "ru-RU",
-                            Created = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(6071),
+                            Created = new DateTime(2024, 4, 25, 10, 1, 53, 535, DateTimeKind.Utc).AddTicks(7765),
                             IsActive = true,
                             IsDefault = false,
                             Name = "Russia",
@@ -647,10 +636,10 @@ namespace TestingSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f07d2bff-3cf2-4984-bd3c-16e92f8ccb05"),
+                            Id = new Guid("49cf5c8d-56f0-4145-87d5-bcefd9529d0f"),
                             AccessFailedCount = (short)0,
                             BirthDay = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Created = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(5942),
+                            Created = new DateTime(2024, 4, 25, 10, 1, 53, 535, DateTimeKind.Utc).AddTicks(7616),
                             Deleted = false,
                             Email = "admin@example.com",
                             FirstName = "AdminFirstName",
@@ -659,19 +648,19 @@ namespace TestingSystem.Data.Migrations
                             Gender = "Male",
                             IsActive = true,
                             LastName = "AdminLastName",
-                            Modified = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(5944),
-                            PasswordHash = new byte[] { 67, 8, 42, 12, 237, 24, 145, 145, 25, 134, 110, 126, 226, 156, 187, 122, 69, 230, 137, 122, 180, 253, 181, 164, 87, 54, 251, 252, 68, 132, 130, 195, 9, 202, 107, 18, 183, 249, 145, 180, 177, 239, 210, 22, 4, 233, 78, 181, 176, 23, 232, 27, 55, 9, 29, 231, 1, 116, 1, 162, 143, 38, 146, 211 },
-                            PasswordSalt = new byte[] { 233, 177, 51, 191, 90, 118, 253, 62, 25, 101, 81, 217, 102, 6, 164, 191, 188, 107, 24, 242, 108, 53, 250, 167, 98, 224, 12, 223, 52, 164, 240, 194, 227, 160, 77, 49, 191, 56, 79, 193, 173, 141, 150, 255, 95, 128, 145, 53, 204, 133, 110, 108, 141, 0, 155, 119, 27, 134, 167, 129, 240, 115, 220, 233, 57, 247, 157, 10, 197, 242, 125, 180, 2, 152, 232, 37, 0, 142, 242, 254, 200, 192, 171, 2, 153, 44, 113, 223, 130, 208, 60, 22, 113, 205, 112, 125, 27, 95, 232, 60, 10, 194, 190, 247, 173, 146, 230, 69, 241, 96, 234, 246, 195, 175, 181, 104, 196, 168, 250, 76, 243, 250, 206, 196, 59, 129, 20, 84 },
+                            Modified = new DateTime(2024, 4, 25, 10, 1, 53, 535, DateTimeKind.Utc).AddTicks(7619),
+                            PasswordHash = new byte[] { 166, 136, 179, 125, 208, 88, 33, 107, 157, 158, 165, 42, 64, 42, 71, 251, 172, 61, 0, 113, 124, 99, 39, 197, 240, 38, 15, 123, 34, 74, 176, 39, 126, 185, 66, 135, 52, 246, 195, 221, 215, 106, 138, 213, 210, 83, 104, 182, 57, 122, 137, 221, 76, 93, 60, 55, 46, 217, 137, 57, 142, 69, 77, 131 },
+                            PasswordSalt = new byte[] { 203, 102, 98, 240, 175, 107, 204, 126, 191, 222, 74, 200, 78, 72, 6, 126, 36, 249, 136, 241, 215, 206, 62, 1, 207, 157, 172, 164, 168, 149, 71, 127, 139, 171, 93, 51, 113, 159, 131, 224, 55, 67, 250, 197, 93, 129, 27, 176, 230, 151, 31, 20, 174, 169, 111, 5, 171, 166, 228, 140, 136, 163, 159, 171, 60, 164, 68, 2, 176, 203, 28, 118, 4, 6, 208, 163, 79, 226, 53, 137, 239, 170, 16, 210, 96, 233, 50, 48, 147, 19, 92, 234, 244, 85, 180, 172, 174, 250, 113, 88, 181, 65, 172, 185, 35, 193, 21, 85, 57, 126, 104, 133, 194, 148, 126, 221, 21, 203, 55, 42, 9, 178, 0, 57, 34, 92, 142, 93 },
                             PhoneNumber = "1234567890",
-                            RoleId = new Guid("74c33832-9368-4283-bd3e-2e32ab937b38"),
+                            RoleId = new Guid("504736c0-f5d4-44d0-a87c-5ef2be6ab4ec"),
                             UserName = "admin"
                         },
                         new
                         {
-                            Id = new Guid("37b24c00-f4d3-4517-bd4a-387f3bbc811f"),
+                            Id = new Guid("714553a0-307e-4b13-901c-44b3262b733a"),
                             AccessFailedCount = (short)0,
                             BirthDay = new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Created = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(5990),
+                            Created = new DateTime(2024, 4, 25, 10, 1, 53, 535, DateTimeKind.Utc).AddTicks(7673),
                             Deleted = false,
                             Email = "teacher@example.com",
                             FirstName = "TeacherFirstName",
@@ -680,19 +669,19 @@ namespace TestingSystem.Data.Migrations
                             Gender = "Female",
                             IsActive = true,
                             LastName = "TeacherLastName",
-                            Modified = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(5991),
-                            PasswordHash = new byte[] { 223, 201, 102, 123, 75, 173, 190, 100, 246, 192, 19, 11, 235, 249, 107, 71, 92, 143, 178, 34, 9, 1, 168, 121, 130, 90, 104, 118, 203, 248, 87, 197, 153, 17, 205, 207, 52, 35, 102, 204, 160, 22, 1, 180, 110, 68, 92, 171, 9, 23, 201, 248, 138, 146, 116, 18, 69, 63, 139, 198, 196, 103, 250, 151 },
-                            PasswordSalt = new byte[] { 182, 49, 174, 186, 84, 41, 175, 8, 244, 11, 88, 24, 59, 59, 65, 47, 62, 135, 3, 218, 177, 130, 10, 67, 28, 93, 165, 208, 239, 148, 158, 51, 119, 105, 106, 6, 71, 227, 4, 231, 180, 121, 109, 93, 138, 53, 224, 221, 66, 203, 165, 175, 131, 172, 184, 245, 253, 201, 20, 197, 116, 234, 231, 33, 99, 9, 89, 27, 139, 219, 220, 163, 121, 231, 167, 154, 232, 2, 236, 114, 209, 37, 32, 143, 159, 228, 88, 131, 98, 132, 3, 170, 223, 193, 112, 140, 11, 144, 136, 86, 222, 217, 2, 79, 19, 98, 43, 120, 0, 48, 163, 125, 17, 228, 76, 111, 194, 248, 45, 175, 242, 51, 184, 133, 152, 35, 109, 197 },
+                            Modified = new DateTime(2024, 4, 25, 10, 1, 53, 535, DateTimeKind.Utc).AddTicks(7674),
+                            PasswordHash = new byte[] { 172, 25, 143, 165, 103, 48, 129, 54, 100, 229, 247, 3, 139, 182, 133, 239, 129, 97, 209, 166, 118, 61, 113, 95, 164, 215, 244, 159, 170, 158, 199, 84, 173, 64, 74, 157, 208, 88, 51, 254, 244, 246, 27, 162, 92, 222, 9, 97, 140, 99, 52, 173, 219, 107, 47, 246, 19, 191, 197, 4, 174, 255, 250, 68 },
+                            PasswordSalt = new byte[] { 9, 63, 52, 1, 78, 170, 151, 103, 196, 170, 137, 43, 12, 74, 210, 121, 255, 147, 142, 47, 147, 225, 177, 175, 4, 246, 34, 37, 135, 226, 112, 108, 102, 136, 231, 189, 113, 56, 237, 20, 76, 176, 40, 167, 243, 22, 175, 255, 193, 217, 188, 159, 167, 153, 113, 244, 138, 236, 127, 81, 47, 244, 248, 119, 31, 92, 194, 229, 255, 156, 137, 90, 34, 154, 120, 229, 69, 193, 104, 34, 136, 54, 155, 138, 9, 171, 160, 3, 68, 241, 249, 170, 56, 233, 7, 43, 59, 70, 121, 190, 108, 236, 102, 89, 198, 208, 201, 251, 185, 121, 145, 212, 92, 216, 170, 97, 124, 233, 123, 243, 2, 45, 118, 251, 90, 186, 232, 241 },
                             PhoneNumber = "9876543210",
-                            RoleId = new Guid("8f726563-4622-44e9-99d2-bcbbcffbe1bd"),
+                            RoleId = new Guid("eef1797a-271a-45e7-b260-3356fdb7af25"),
                             UserName = "teacher"
                         },
                         new
                         {
-                            Id = new Guid("bef85b2a-d9c6-4fa6-a975-feb61d997889"),
+                            Id = new Guid("adc4002b-f2f2-4f8a-b1a4-5e8da6299c2c"),
                             AccessFailedCount = (short)0,
                             BirthDay = new DateTime(2000, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Created = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(6025),
+                            Created = new DateTime(2024, 4, 25, 10, 1, 53, 535, DateTimeKind.Utc).AddTicks(7716),
                             Deleted = false,
                             Email = "ronaldo@example.com",
                             FirstName = "Cristiano",
@@ -701,11 +690,11 @@ namespace TestingSystem.Data.Migrations
                             Gender = "Male",
                             IsActive = true,
                             LastName = "Ronaldo",
-                            Modified = new DateTime(2024, 4, 24, 10, 13, 17, 28, DateTimeKind.Utc).AddTicks(6025),
-                            PasswordHash = new byte[] { 170, 236, 76, 137, 170, 26, 3, 206, 177, 53, 137, 27, 38, 31, 169, 163, 152, 230, 31, 69, 91, 132, 11, 255, 19, 102, 222, 224, 202, 116, 26, 207, 155, 248, 216, 35, 183, 99, 88, 238, 122, 26, 204, 146, 41, 173, 63, 14, 93, 173, 112, 14, 36, 225, 1, 122, 157, 153, 233, 53, 98, 211, 1, 232 },
-                            PasswordSalt = new byte[] { 5, 180, 49, 221, 181, 196, 238, 67, 103, 155, 65, 96, 181, 236, 68, 17, 51, 100, 68, 80, 87, 198, 108, 217, 171, 201, 52, 77, 174, 22, 184, 137, 71, 68, 88, 47, 191, 218, 207, 49, 128, 111, 192, 38, 150, 86, 113, 148, 154, 135, 107, 24, 239, 122, 208, 209, 82, 82, 142, 139, 33, 1, 226, 104, 89, 245, 46, 244, 148, 244, 112, 50, 193, 71, 116, 41, 138, 208, 93, 26, 120, 211, 127, 14, 6, 196, 47, 52, 185, 60, 40, 33, 77, 234, 154, 247, 226, 52, 41, 123, 181, 211, 66, 145, 172, 161, 209, 94, 106, 210, 210, 92, 33, 202, 60, 10, 202, 3, 30, 223, 217, 132, 156, 126, 212, 225, 7, 78 },
+                            Modified = new DateTime(2024, 4, 25, 10, 1, 53, 535, DateTimeKind.Utc).AddTicks(7716),
+                            PasswordHash = new byte[] { 6, 50, 124, 171, 3, 64, 198, 50, 219, 81, 14, 94, 241, 150, 237, 116, 23, 146, 226, 213, 161, 32, 241, 31, 91, 219, 215, 136, 193, 248, 181, 126, 245, 8, 94, 224, 35, 18, 87, 52, 130, 137, 7, 58, 104, 185, 168, 208, 104, 172, 191, 8, 147, 4, 127, 252, 177, 181, 49, 14, 158, 189, 219, 59 },
+                            PasswordSalt = new byte[] { 131, 170, 178, 100, 159, 57, 190, 97, 204, 242, 13, 20, 170, 226, 31, 149, 58, 144, 200, 235, 162, 146, 233, 146, 142, 14, 61, 202, 70, 183, 30, 34, 157, 181, 204, 21, 44, 42, 79, 108, 104, 253, 127, 144, 223, 185, 91, 223, 232, 142, 221, 4, 35, 240, 174, 181, 202, 203, 202, 238, 213, 205, 49, 38, 68, 115, 20, 252, 62, 242, 48, 209, 152, 129, 112, 142, 117, 193, 63, 53, 59, 0, 22, 95, 64, 15, 158, 95, 196, 119, 27, 195, 12, 122, 44, 24, 86, 204, 45, 14, 72, 116, 90, 238, 11, 61, 6, 236, 90, 136, 182, 57, 151, 126, 9, 237, 255, 125, 39, 88, 142, 203, 144, 177, 160, 209, 79, 245 },
                             PhoneNumber = "5555555555",
-                            RoleId = new Guid("2e6b81d9-0ee1-495b-b6ab-11185b430191"),
+                            RoleId = new Guid("1191aa8d-4cbe-49da-a544-071ce5de311c"),
                             UserName = "user"
                         });
                 });
@@ -730,17 +719,17 @@ namespace TestingSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            RoleId = new Guid("74c33832-9368-4283-bd3e-2e32ab937b38"),
+                            RoleId = new Guid("504736c0-f5d4-44d0-a87c-5ef2be6ab4ec"),
                             RoleName = "Admin"
                         },
                         new
                         {
-                            RoleId = new Guid("8f726563-4622-44e9-99d2-bcbbcffbe1bd"),
+                            RoleId = new Guid("eef1797a-271a-45e7-b260-3356fdb7af25"),
                             RoleName = "Teacher"
                         },
                         new
                         {
-                            RoleId = new Guid("2e6b81d9-0ee1-495b-b6ab-11185b430191"),
+                            RoleId = new Guid("1191aa8d-4cbe-49da-a544-071ce5de311c"),
                             RoleName = "User"
                         });
                 });
@@ -867,6 +856,17 @@ namespace TestingSystem.Data.Migrations
                     b.Navigation("CourseDetail");
 
                     b.Navigation("Language");
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.Course.CourseTeacher", b =>
+                {
+                    b.HasOne("TestingSystem.Data.Entities.User", "Teacher")
+                        .WithMany("CourseTeachers")
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("TestingSystem.Data.Entities.Course.CourseTeacherTranslation", b =>
@@ -1083,6 +1083,8 @@ namespace TestingSystem.Data.Migrations
 
             modelBuilder.Entity("TestingSystem.Data.Entities.User", b =>
                 {
+                    b.Navigation("CourseTeachers");
+
                     b.Navigation("Courses");
 
                     b.Navigation("Exams");

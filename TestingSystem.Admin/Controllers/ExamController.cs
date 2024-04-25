@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TestingSystem.Core.Services.Implements;
 using TestingSystem.Core.Services.Interfaces;
 using TestingSystem.Data.Models.Exam;
 
 namespace TestingSystem.Admin.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class ExamController : BaseController
     {
         private readonly IExamService _examService;
@@ -17,6 +14,7 @@ namespace TestingSystem.Admin.Controllers
             _examService = examService;
         }
 
+        [Authorize (Roles = "Admin, Teacher")]
         [HttpPost("create")]
         public async Task<IActionResult> CreateExam(CreateOrUpdateExamRequest request)
         {
@@ -24,6 +22,7 @@ namespace TestingSystem.Admin.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteAnswer(Guid id)
         {
@@ -70,6 +69,7 @@ namespace TestingSystem.Admin.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpPut("update")]
         public async Task<IActionResult> UpdateExam(ExamDto request)
         {

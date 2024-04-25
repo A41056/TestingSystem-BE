@@ -25,6 +25,11 @@ namespace TestingSystem.Core.Services.Implements.Category
             await _categoryTranslationRepository.DeleteAsync(categoryId);
         }
 
+        public async Task<CategoryDto> GetCategoryById(Guid categoryId)
+        {
+            return await _categoryRepository.GetCategoryById(categoryId);
+        }
+
         public async Task<IEnumerable<CategoryListModel>> GetCategoryListAsync()
         {
             return await _categoryRepository.GetCategoryListAsync();
