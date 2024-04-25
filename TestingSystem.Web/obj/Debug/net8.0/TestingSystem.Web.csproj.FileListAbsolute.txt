@@ -78,9 +78,6 @@ D:\.NET Project\TestingSystem\TestingSystem.Web\obj\Debug\net8.0\refint\TestingS
 D:\.NET Project\TestingSystem\TestingSystem.Web\obj\Debug\net8.0\TestingSystem.Web.pdb
 D:\.NET Project\TestingSystem\TestingSystem.Web\obj\Debug\net8.0\TestingSystem.Web.genruntimeconfig.cache
 D:\.NET Project\TestingSystem\TestingSystem.Web\obj\Debug\net8.0\ref\TestingSystem.Web.dll
-C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\obj\Debug\net8.0\TestingSystem.Web.dll
-C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\obj\Debug\net8.0\refint\TestingSystem.Web.dll
-C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\obj\Debug\net8.0\TestingSystem.Web.pdb
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\bin\Debug\net8.0\appsettings.Development.json
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\bin\Debug\net8.0\appsettings.json
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\bin\Debug\net8.0\TestingSystem.Web.staticwebassets.runtime.json
@@ -109,6 +106,7 @@ C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\bin\Debug\net8.0\Mic
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -157,6 +155,8 @@ C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\obj\Debug\net8.0\sta
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\obj\Debug\net8.0\scopedcss\bundle\TestingSystem.Web.styles.css
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\obj\Debug\net8.0\TestingS.DAE6F013.Up2Date
+C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\obj\Debug\net8.0\TestingSystem.Web.dll
+C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\obj\Debug\net8.0\refint\TestingSystem.Web.dll
+C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\obj\Debug\net8.0\TestingSystem.Web.pdb
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\obj\Debug\net8.0\TestingSystem.Web.genruntimeconfig.cache
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\obj\Debug\net8.0\ref\TestingSystem.Web.dll
-C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Web\bin\Debug\net8.0\Newtonsoft.Json.dll

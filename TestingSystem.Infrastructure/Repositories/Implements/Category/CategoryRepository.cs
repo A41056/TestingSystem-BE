@@ -24,6 +24,18 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Category
             return await DbSet.FirstOrDefaultAsync(c => c.Id == categoryId) != null;
         }
 
+        public async Task<CategoryDto> GetCategoryById(Guid categoryId)
+        {
+            var category = await DbSet.FirstOrDefaultAsync(c => c.Id == categoryId);
+
+            return new CategoryDto()
+            {
+                NameNonAscii = category.NameNoneAscii,
+                SortOrder = category.SortOrder,
+                IsActive = category.IsActive.GetValueOrDefault()
+            };
+        }
+
         public async Task<IEnumerable<CategoryListModel>> GetCategoryListAsync()
         {
             var languageCode = await _languageTagRepository.GetDefault();
@@ -46,14 +58,10 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Category
                     Id = category.Id,
                     Name = categoryTrans?.Name,
                     NameNonAscii = category.NameNoneAscii,
-                    LinkUrl = category.LinkUrl,
                     SortOrder = category.SortOrder,
                     Description = categoryTrans?.Description,
-                    ParentId = category.ParentId,
                     Deleted = category.Deleted,
-                    CategoryType = (short)category.CategoryType,
                     IsActive = category.IsActive.GetValueOrDefault(),
-                    Level = category.Level
                 });
             }
 
@@ -62,25 +70,12 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Category
 
         public async Task InsertAsync(Guid categoryId, CategoryDto model)
         {
-            var level = 0;
-            if (model.ParentId != null)
-            {
-                var parent = await DbSet.FirstOrDefaultAsync(c => c.Id == model.ParentId);
-                level = parent.Level + 1;
-            }
-
             var category = new Data.Entities.Category.Category
             {
                 Id = categoryId,
                 NameNoneAscii = model.NameNonAscii,
-                LinkUrl = model.LinkUrl,
                 SortOrder = model.SortOrder,
-                ParentId = model.ParentId,
-                CategoryType = (int)model.CategoryType,
                 IsActive = model.IsActive,
-                Level = level,
-                Identifier = model.Identifier,
-                ImageFileId = model.ImageFileId,
                 Created = DateTime.UtcNow
             };
 
@@ -106,21 +101,9 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Category
         {
             var category = await DbSet.FindAsync(categoryId);
 
-            var level = 0;
-            if (model.ParentId != null)
-            {
-                var parent = await DbSet.FindAsync(model.ParentId);
-                level = parent.Level + 1;
-            }
-
             category.NameNoneAscii = model.NameNonAscii;
-            category.LinkUrl = model.LinkUrl;
             category.SortOrder = model.SortOrder;
-            category.ParentId = model.ParentId;
-            category.CategoryType = (int)model.CategoryType;
-            category.Level = level;
             category.Modified = DateTime.UtcNow;
-            category.ImageFileId = model.ImageFileId;
 
             await SaveChangeAsync();
         }

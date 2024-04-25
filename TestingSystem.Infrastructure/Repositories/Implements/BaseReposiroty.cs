@@ -89,6 +89,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : class
 
         // Pagination
         var paginatedQuery = orderedQuery
+            .AsEnumerable()
             .Skip((pageNum - 1) * pageSize)
             .Take(pageSize);
 

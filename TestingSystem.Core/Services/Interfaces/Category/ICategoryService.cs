@@ -10,6 +10,8 @@ namespace TestingSystem.Core.Services.Interfaces.Category
         Task SoftDeleteCategoryAsync(Guid categoryId);
         Task UpdateCategoryAsync(Guid categoryId, CategoryUpdateModel model);
         Task InsertTranslationAsync(Guid categoryId, CategoryTranslationDto model);
+        Task<CategoryDto> GetCategoryById(Guid categoryId);
+
         Task DeleteAsync(Guid categoryId);
         Task UpdateTranslationAsync(Guid categoryId, CategoryTranslationDto model);
         Task<IEnumerable<CategoryTranslationDto>> GetListByLanguageCode(string languageCode);

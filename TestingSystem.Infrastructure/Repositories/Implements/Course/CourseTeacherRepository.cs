@@ -31,13 +31,13 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Course
         {
             var teacherModel = new CourseTeacherSingleModel();
 
-            var ct = await DbSet.FirstOrDefaultAsync(ct => ct.Id == teacherId);
+            var ct = await DbSet.FirstOrDefaultAsync(ct => ct.TeacherId == teacherId);
 
             teacherModel.Id = ct.Id;
             teacherModel.CourseId = ct.CourseId;
             teacherModel.ImageUrl = ct.AvatarUrl;
 
-            var translations = await _courseTeacherTranslationRepository.GetCourseTeacherTranslationByIdAsync(ct.Id);
+            var translations = await _courseTeacherTranslationRepository.GetCourseTeacherTranslationByIdAsync(ct.TeacherId);
             teacherModel.Translation = translations.ToList();
 
             return teacherModel;
@@ -64,12 +64,13 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Course
             return teachers;
         }
 
-        public async Task InsertAsync(Guid teacherId, CourseTeacherDto model)
+        public async Task InsertAsync(Guid teacherId, CourseTeacherInsertDto model)
         {
             var courseTeacher = new CourseTeacher()
             {
-                Id = teacherId,
-                CourseId = model.CourseId,
+                Id = Guid.NewGuid(),
+                TeacherId = teacherId,
+                CourseId = model.CourseId.GetValueOrDefault(),
                 SortOrder = model.SortOrder,
                 AvatarUrl = model.AvatarUrl
             };
@@ -78,9 +79,9 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Course
             await SaveChangeAsync();
         }
 
-        public async Task UpdateAsync(Guid teacherId, CourseTeacherUpdateModel model)
+        public async Task UpdateAsync(Guid id, CourseTeacherUpdateModel model)
         {
-            var courseTeacher = await DbSet.FirstOrDefaultAsync(ct => ct.Id == teacherId);
+            var courseTeacher = await DbSet.FirstOrDefaultAsync(ct => ct.Id == id);
 
             if (courseTeacher != null) 
             {

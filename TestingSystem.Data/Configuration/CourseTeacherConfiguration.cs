@@ -12,6 +12,10 @@ namespace TestingSystem.Data.Configuration
 
             builder.HasKey(a => a.Id);
 
+            builder.HasOne(ct => ct.Teacher)
+                .WithMany(ct => ct.CourseTeachers)
+                .HasForeignKey(ct => ct.TeacherId);
+
             builder.HasIndex(a => a.CourseId);
         }
     }

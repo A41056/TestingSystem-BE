@@ -10,7 +10,7 @@ namespace TestingSystem.Data.Configuration
         {
             builder.ToTable("CategoryTranslation");
 
-            builder.HasKey(a => a.CategoryId);
+            builder.HasKey(a => a.Id);
 
             builder.HasOne(a => a.Category)
                    .WithMany(q => q.CategoryTranslations)
