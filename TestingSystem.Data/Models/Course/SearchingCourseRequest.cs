@@ -8,5 +8,6 @@ namespace TestingSystem.Data.Models.Course
         public string? FullTextSearch { get; set; }
 
         public Guid? CategoryId { get; set; }
+        public string? LanguageCode { get; set; }
     }
 }

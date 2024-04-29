@@ -2,6 +2,7 @@
 {
     public class LessionTranslation
     {
+        public Guid Id { get; set; }
         public string LanguageCode { get; set; }
         public Guid LessionId { get; set; }
         public string Title { get; set; }

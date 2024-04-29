@@ -7,7 +7,7 @@ namespace TestingSystem.Infrastructure.Repositories.Interfaces;
 public interface IUserRepository : IBaseRepository<User>
 {
     Task<PaginatedResponseModel<User>> GetListUser(SearchingUserRequest request);
-    Task<User> GetUser(Guid userId);
+    Task<UserDto> GetUser(Guid userId);
     Task<bool> RegisterUser(CreateUserRequest request);
     Task<User> AddUser(CreateUserRequest request);
     Task<User> UpdateUserInfo(UpdateUserRequest request);

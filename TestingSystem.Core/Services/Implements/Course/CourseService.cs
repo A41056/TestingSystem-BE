@@ -29,6 +29,11 @@ namespace TestingSystem.Core.Services.Implements.Course
             _courseTeacherTranslationRepository = courseTeacherTranslationRepository;
         }
 
+        public async Task DeleteCourse(Guid courseId)
+        {
+            await _courseRepository.DeleteAsync(courseId);
+        }
+
         public async Task DeleteDetailTranslationsByCourseIdAsync(Guid courseDetailId)
         {
             await _courseDetailTranslationRepository.DeleteTranslationsByCourseIdAsync(courseDetailId);
@@ -144,7 +149,7 @@ namespace TestingSystem.Core.Services.Implements.Course
             await _courseTranslationRepository.InsertTranslationAsync(courseId, model);
         }
 
-        public async Task UpdateCourseAsync(Guid courseId, CourseInfoDto model)
+        public async Task UpdateCourseAsync(Guid courseId, CourseUpdateDto model)
         {
             await _courseRepository.UpdateAsync(courseId, model);
         }

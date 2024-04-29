@@ -6,7 +6,6 @@ using TestingSystem.Data.Models.Course;
 
 namespace TestingSystem.Admin.Controllers
 {
-    [Authorize (Roles = "Admin, Teacher")]
     public class CourseController : BaseController
     {
         private readonly ICourseService _courseService;
@@ -27,13 +26,14 @@ namespace TestingSystem.Admin.Controllers
             return Ok(course);
         }
 
-        [HttpGet]
+        [HttpGet("list")]
         public async Task<IActionResult> GetListCourseAsync([FromQuery]SearchingCourseRequest request)
         {
             var course = await _courseService.GetListCourseAsync(request);
             return Ok(course);
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpPost]
         public async Task<IActionResult> InsertCourse(CourseInsertDto model)
         {
@@ -42,20 +42,23 @@ namespace TestingSystem.Admin.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpPut("{courseId}")]
-        public async Task<IActionResult> UpdateCourse(Guid courseId, CourseInfoDto model)
+        public async Task<IActionResult> UpdateCourse(Guid courseId, CourseUpdateDto model)
         {
             await _courseService.UpdateCourseAsync(courseId, model);
             return Ok();
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpPost("{courseId}/translations")]
-        public async Task<IActionResult> InsertCourseTranslation(Guid courseId, CourseInsertOrUpdateTranslationDto model)
+        public async Task<IActionResult> InsertCourseTranslation(Guid courseId,CourseInsertOrUpdateTranslationDto model)
         {
             await _courseService.InsertTranslationAsync(courseId, model);
             return Ok();
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpDelete("{courseId}/translations")]
         public async Task<IActionResult> DeleteCourseTranslations(Guid courseId)
         {
@@ -77,6 +80,13 @@ namespace TestingSystem.Admin.Controllers
             return Ok(translations);
         }
 
+        [HttpGet("{courseId}/translations/{languageCode}")]
+        public async Task<ActionResult<IEnumerable<CourseInsertOrUpdateTranslationDto>>> GetCourseTranslationsByCourseAndLanguage(Guid courseId, string languageCode)
+        {
+            var translations = await _courseService.GetListByCourseId(courseId, languageCode);
+            return Ok(translations);
+        }
+
         [HttpGet("{courseId}/teachers")]
         public async Task<ActionResult<IEnumerable<CourseTeacherListModel>>> GetCourseTeachers(Guid courseId)
         {
@@ -84,6 +94,7 @@ namespace TestingSystem.Admin.Controllers
             return Ok(teachers);
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpPost("{teacherId}")]
         public async Task<IActionResult> InsertTeacher(Guid teacherId, CourseTeacherInsertDto model)
         {
@@ -91,13 +102,23 @@ namespace TestingSystem.Admin.Controllers
             return Ok();
         }
 
-        [HttpPut("{teacherId}")]
+        [Authorize(Roles = "Admin, Teacher")]
+        [HttpPut("teacher/{teacherId}")]
         public async Task<IActionResult> UpdateTeacher(Guid teacherId, CourseTeacherUpdateModel model)
         {
             await _courseService.UpdateTeacherAsync(teacherId, model);
             return Ok();
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("delete/{courseId}")]
+        public async Task<IActionResult> DeleteCourse(Guid courseId)
+        {
+            await _courseService.DeleteCourse(courseId);
+            return Ok();
+        }
+
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{teacherId}")]
         public async Task<IActionResult> DeleteTeacher(Guid teacherId)
         {
@@ -116,6 +137,7 @@ namespace TestingSystem.Admin.Controllers
             return Ok(teacher);
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpPost("teachers/{teacherId}/translations")]
         public async Task<IActionResult> InsertTeacherTranslation(Guid teacherId, CourseTeacherTranslationDto model)
         {
@@ -123,6 +145,7 @@ namespace TestingSystem.Admin.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpDelete("teachers/{teacherId}/translations")]
         public async Task<IActionResult> DeleteTeacherTranslations(Guid teacherId)
         {
@@ -158,6 +181,7 @@ namespace TestingSystem.Admin.Controllers
             return Ok(details);
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpPost("{courseDetailId}/details/translations")]
         public async Task<IActionResult> InsertCourseDetailTranslation(Guid courseDetailId, CourseDetailTranslationDto model)
         {
@@ -165,6 +189,7 @@ namespace TestingSystem.Admin.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpDelete("{courseDetailId}/details/translations")]
         public async Task<IActionResult> DeleteCourseDetailTranslations(Guid courseDetailId)
         {

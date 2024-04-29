@@ -2,6 +2,7 @@
 {
     public partial class CourseTranslation
     {
+        public Guid Id { get; set; }
         public string LanguageCode { get; set; }
 
         public Guid CourseId { get; set; }

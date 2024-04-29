@@ -6,7 +6,7 @@ namespace TestingSystem.Core.Services.Interfaces;
 public interface IUserService 
 {
     Task<PaginatedResponseModel<User>> GetListUser(SearchingUserRequest request);
-    Task<User> GetUser(Guid userId);
+    Task<UserDto> GetUser(Guid userId);
     Task<bool> RegisterUser(CreateUserRequest request);
     Task<User> AddUser(CreateUserRequest request);
     Task<User> UpdateUserInfo(UpdateUserRequest request);

@@ -73,9 +73,49 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Lession
             return result;
         }
 
-        public Task InsertTranslationAsync(Guid lessionId, LessionTranslationDtro model)
+        public async Task<IEnumerable<LessionTranslationDtro>> GetListLessionTransByLessionIds(List<Guid> lessionId, string languageCode)
         {
-            throw new NotImplementedException();
+            var result = new List<LessionTranslationDtro>();
+            var ctts = await DbSet.Where(ctt => lessionId.Contains(ctt.LessionId) && ctt.LanguageCode == languageCode).ToListAsync();
+
+            foreach (var item in ctts)
+            {
+                result.Add(new LessionTranslationDtro()
+                {
+                    LessonId = item.LessionId,
+                    LanguageCode = item.LanguageCode,
+                    Title = item.Title,
+                    Content = item.Content
+                });
+            }
+
+            return result;
+        }
+
+        public async Task InsertTranslationAsync(Guid lessionId, LessionTranslationDtro model)
+        {
+            var lesson = await DbSet.FirstOrDefaultAsync(lt => lt.LessionId == lessionId && lt.LanguageCode == model.LanguageCode);
+
+            if (lesson == null)
+            {
+                var lessonTrans = new Data.Entities.LessionTranslation()
+                {
+                    Id = Guid.NewGuid(),
+                    LessionId = lessionId,
+                    LanguageCode = model.LanguageCode,
+                    Title = model.Title,
+                    Content = model.Content
+                };
+
+                await DbSet.AddAsync(lessonTrans);
+            }
+            else
+            {
+                lesson.Title = model.Title;
+                lesson.Content = model.Content;
+            }
+            
+            await SaveChangeAsync();
         }
     }
 }

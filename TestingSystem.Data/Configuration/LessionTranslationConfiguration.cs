@@ -10,7 +10,7 @@ namespace TestingSystem.Data.Configuration
         {
             builder.ToTable("LessionTranslations");
 
-            builder.HasKey(a => a.LessionId);
+            builder.HasKey(a => a.Id);
 
             builder.HasOne(a => a.Lession)
                    .WithMany(q => q.LessionTranslations)
@@ -22,7 +22,7 @@ namespace TestingSystem.Data.Configuration
                    .HasForeignKey(a => a.LanguageCode)
                    .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasIndex(a => a.LessionId);
+            builder.HasIndex(a => a.Id);
         }
     }
 }

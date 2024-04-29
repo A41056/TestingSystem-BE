@@ -5,9 +5,6 @@ using TestingSystem.Core.Services.Interfaces;
 using TestingSystem.Data.Models.User;
 
 namespace TestingSystem.Admin.Controllers;
-[Route("api/[controller]")]
-[ApiController]
-[Authorize(Roles = "Admin")]
 
 public class UserController : BaseController
 {
@@ -18,6 +15,7 @@ public class UserController : BaseController
         _userService = userService;
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost("add")]
     public async Task<IActionResult> AddUser([FromBody] CreateUserRequest request)
     {
@@ -32,6 +30,7 @@ public class UserController : BaseController
         }
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpGet("list")]
     public async Task<IActionResult> GetListUser([FromQuery] SearchingUserRequest request)
     {

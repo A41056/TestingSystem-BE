@@ -8,8 +8,9 @@ namespace TestingSystem.Core.Services.Interfaces.Course
         Task<CourseInfoDto> GetCourseByIdAsync(Guid id);
         Task<PaginatedResponseModel<CourseInfoDto>> GetListCourseAsync(SearchingCourseRequest request);
         Task InsertCourseAsync(Guid courseId, CourseInsertDto model);
-        Task UpdateCourseAsync(Guid courseId, CourseInfoDto model);
+        Task UpdateCourseAsync(Guid courseId, CourseUpdateDto model);
         Task InsertTranslationAsync(Guid courseId, CourseInsertOrUpdateTranslationDto model);
+        Task DeleteCourse(Guid courseId);
         Task DeleteTranslationsByCourseIdAsync(Guid courseId);
         Task<IEnumerable<CourseInsertOrUpdateTranslationDto>> GetCourseTranslationsByCourseIdAsync(Guid courseId);
         Task<IEnumerable<CourseInsertOrUpdateTranslationDto>> GetListByLanguageCode(string languageCode);

@@ -10,14 +10,14 @@ namespace TestingSystem.Data.Configuration
         {
             builder.ToTable("CourseTranslations");
 
-            builder.HasKey(a => a.CourseId);
+            builder.HasKey(a => a.Id);
 
             builder.HasOne(a => a.Course)
                    .WithMany(q => q.CourseTranslations)
                    .HasForeignKey(a => a.CourseId)
                    .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasIndex(a => a.CourseId);
+            builder.HasIndex(a => a.Id);
         }
     }
 }

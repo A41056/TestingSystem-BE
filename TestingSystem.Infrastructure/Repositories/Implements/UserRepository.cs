@@ -73,6 +73,7 @@ namespace TestingSystem.Infrastructure.Repositories.Implements
                 Deleted = false,
                 AccessFailedCount = 0,
                 IsActive = true,
+                AvatarUrl = request.AvatarUrl,
                 Created = DateTime.UtcNow,
                 Modified = DateTime.UtcNow
             };
@@ -106,6 +107,9 @@ namespace TestingSystem.Infrastructure.Repositories.Implements
             if (request.Gender != null)
                 user.Gender = request.Gender;
 
+            if (request.AvatarUrl != null)
+                user.AvatarUrl = request.AvatarUrl;
+
             if (request.RoleName != null)
             {
                 Guid? roleId = await _roleRepository.GetByRoleName(request.RoleName);
@@ -138,7 +142,9 @@ namespace TestingSystem.Infrastructure.Repositories.Implements
 
             user.FullName = user.FirstName + " " + user.LastName;
             user.FullTextSearch = user.UserName + " " + user.FullName + " " + user.Email + " " + user.PhoneNumber;
+            user.AvatarUrl = request.AvatarUrl;
             user.Modified = DateTime.UtcNow;
+
 
             await SaveChangeAsync();
 
@@ -160,9 +166,30 @@ namespace TestingSystem.Infrastructure.Repositories.Implements
                 );
         }
 
-        public async Task<User> GetUser(Guid userId)
+        public async Task<UserDto> GetUser(Guid userId)
         {
-            return await base.GetById(userId) ?? throw new UserNotFoundException();
+            var user = await DbSet.FirstOrDefaultAsync(u => u.Id == userId) ?? throw new UserNotFoundException();
+
+            return new UserDto()
+            {
+                Id = user.Id,
+                RoleId = user.RoleId,
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                FullName = user.FullName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                Gender = user.Gender,
+                BirthDay = user.BirthDay,
+                IsActive = user.IsActive,
+                AvatarUrl = user.AvatarUrl,
+                Created = user.Created,
+                Modified = user.Modified,
+                FullTextSearch = user.FullTextSearch,
+                Deleted = user.Deleted,
+                AccessFailedCount = user.AccessFailedCount
+            };
         }
     }
 }

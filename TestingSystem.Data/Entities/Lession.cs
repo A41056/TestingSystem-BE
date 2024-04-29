@@ -7,6 +7,7 @@
         public string Title { get; set; }
         public string VideoUrl { get; set; }
         public int SortOrder { get; set; }
+        public bool? Deleted { get; set; }
         public DateTime? Created { get; set; }
         public DateTime? Modified { get; set; }
 

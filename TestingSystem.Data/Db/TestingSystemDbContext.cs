@@ -46,84 +46,87 @@ public class TestingSystemDbContext : DbContext
         var userRoleId = Guid.NewGuid();
 
         // Create roles
-        modelBuilder.Entity<UserRole>().HasData(
-            new UserRole { RoleId = adminRoleId, RoleName = "Admin" },
-            new UserRole { RoleId = teacherRoleId, RoleName = "Teacher" },
-            new UserRole { RoleId = userRoleId, RoleName = "User" }
-        );
+        //modelBuilder.Entity<UserRole>().HasData(
+        //    new UserRole { RoleId = adminRoleId, RoleName = "Admin" },
+        //    new UserRole { RoleId = teacherRoleId, RoleName = "Teacher" },
+        //    new UserRole { RoleId = userRoleId, RoleName = "User" }
+        //);
 
-        // Create users
-        modelBuilder.Entity<User>().HasData(
-            new User
-            {
-                Id = Guid.NewGuid(),
-                RoleId = adminRoleId,
-                UserName = "admin",
-                PasswordHash = GetPasswordHash("admin", out byte[] salt),
-                PasswordSalt = salt,
-                FirstName = "AdminFirstName",
-                LastName = "AdminLastName",
-                FullName = "AdminFirstName AdminLastName",
-                Email = "admin@example.com",
-                PhoneNumber = "1234567890",
-                Gender = "Male",
-                BirthDay = new DateTime(1990, 1, 1),
-                IsActive = true,
-                Created = DateTime.UtcNow,
-                Modified = DateTime.UtcNow,
-                FullTextSearch = "admin AdminFirstName AdminLastName admin@example.com 1234567890 Male",
-                Deleted = false,
-                AccessFailedCount = 0
-            },
-            new User
-            {
-                Id = Guid.NewGuid(),
-                RoleId = teacherRoleId,
-                UserName = "teacher",
-                PasswordHash = GetPasswordHash("teacher", out byte[] salt2),
-                PasswordSalt = salt2,
-                FirstName = "TeacherFirstName",
-                LastName = "TeacherLastName",
-                FullName = "TeacherFirstName TeacherLastName",
-                Email = "teacher@example.com",
-                PhoneNumber = "9876543210",
-                Gender = "Female",
-                BirthDay = new DateTime(1985, 5, 10),
-                IsActive = true,
-                Created = DateTime.UtcNow,
-                Modified = DateTime.UtcNow,
-                FullTextSearch = "teacher TeacherFirstName TeacherLastName teacher@example.com 9876543210 Female",
-                Deleted = false,
-                AccessFailedCount = 0
-            },
-            new User
-            {
-                Id = Guid.NewGuid(),
-                RoleId = userRoleId,
-                UserName = "user",
-                PasswordHash = GetPasswordHash("user", out byte[] salt3),
-                PasswordSalt = salt3,
-                FirstName = "Cristiano",
-                LastName = "Ronaldo",
-                FullName = "Cristiano Ronaldo",
-                Email = "ronaldo@example.com",
-                PhoneNumber = "5555555555",
-                Gender = "Male",
-                BirthDay = new DateTime(2000, 10, 15),
-                IsActive = true,
-                Created = DateTime.UtcNow,
-                Modified = DateTime.UtcNow,
-                FullTextSearch = "user Cristiano Ronaldo ronaldo@example.com 5555555555 Male",
-                Deleted = false,
-                AccessFailedCount = 0
-            }
-        );
+        //// Create users
+        //modelBuilder.Entity<User>().HasData(
+        //    new User
+        //    {
+        //        Id = Guid.NewGuid(),
+        //        RoleId = adminRoleId,
+        //        UserName = "admin",
+        //        PasswordHash = GetPasswordHash("admin", out byte[] salt),
+        //        PasswordSalt = salt,
+        //        FirstName = "AdminFirstName",
+        //        LastName = "AdminLastName",
+        //        FullName = "AdminFirstName AdminLastName",
+        //        Email = "admin@example.com",
+        //        PhoneNumber = "1234567890",
+        //        Gender = "Male",
+        //        BirthDay = new DateTime(1990, 1, 1),
+        //        IsActive = true,
+        //        Created = DateTime.UtcNow,
+        //        Modified = DateTime.UtcNow,
+        //        FullTextSearch = "admin AdminFirstName AdminLastName admin@example.com 1234567890 Male",
+        //        Deleted = false,
+        //        AccessFailedCount = 0,
+        //        AvatarUrl = "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+        //    },
+        //    new User
+        //    {
+        //        Id = Guid.NewGuid(),
+        //        RoleId = teacherRoleId,
+        //        UserName = "teacher",
+        //        PasswordHash = GetPasswordHash("teacher", out byte[] salt2),
+        //        PasswordSalt = salt2,
+        //        FirstName = "TeacherFirstName",
+        //        LastName = "TeacherLastName",
+        //        FullName = "TeacherFirstName TeacherLastName",
+        //        Email = "teacher@example.com",
+        //        PhoneNumber = "9876543210",
+        //        Gender = "Female",
+        //        BirthDay = new DateTime(1985, 5, 10),
+        //        IsActive = true,
+        //        Created = DateTime.UtcNow,
+        //        Modified = DateTime.UtcNow,
+        //        FullTextSearch = "teacher TeacherFirstName TeacherLastName teacher@example.com 9876543210 Female",
+        //        Deleted = false,
+        //        AccessFailedCount = 0,
+        //        AvatarUrl = "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+        //    },
+        //    new User
+        //    {
+        //        Id = Guid.NewGuid(),
+        //        RoleId = userRoleId,
+        //        UserName = "user",
+        //        PasswordHash = GetPasswordHash("user", out byte[] salt3),
+        //        PasswordSalt = salt3,
+        //        FirstName = "Cristiano",
+        //        LastName = "Ronaldo",
+        //        FullName = "Cristiano Ronaldo",
+        //        Email = "ronaldo@example.com",
+        //        PhoneNumber = "5555555555",
+        //        Gender = "Male",
+        //        BirthDay = new DateTime(2000, 10, 15),
+        //        IsActive = true,
+        //        Created = DateTime.UtcNow,
+        //        Modified = DateTime.UtcNow,
+        //        FullTextSearch = "user Cristiano Ronaldo ronaldo@example.com 5555555555 Male",
+        //        Deleted = false,
+        //        AccessFailedCount = 0,
+        //        AvatarUrl = "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+        //    }
+        //);
 
-        modelBuilder.Entity<LanguageTag>().HasData(
-            new LanguageTag { Code = "vi-VN", Name = "VietNam", IsActive = true, IsDefault = true, SortOrder = 0, Created = DateTime.UtcNow },
-            new LanguageTag { Code = "en-EN", Name = "English", IsActive = true, IsDefault = false, SortOrder = 1, Created = DateTime.UtcNow },
-            new LanguageTag {Code = "ru-RU", Name = "Russia", IsActive = true, IsDefault = false, SortOrder = 2, Created = DateTime.UtcNow }
-        );
+        //modelBuilder.Entity<LanguageTag>().HasData(
+        //    new LanguageTag { Code = "vi-VN", Name = "VietNam", IsActive = true, IsDefault = true, SortOrder = 0, Created = DateTime.UtcNow },
+        //    new LanguageTag { Code = "en-EN", Name = "English", IsActive = true, IsDefault = false, SortOrder = 1, Created = DateTime.UtcNow },
+        //    new LanguageTag {Code = "ru-RU", Name = "Russia", IsActive = true, IsDefault = false, SortOrder = 2, Created = DateTime.UtcNow }
+        //);
     }
 
     private byte[] GetPasswordHash(string password, out byte[] salt)

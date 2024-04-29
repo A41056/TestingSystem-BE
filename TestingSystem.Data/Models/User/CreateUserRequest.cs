@@ -11,4 +11,6 @@ public class CreateUserRequest
     public string? PhoneNumber { get; set; }
     public string? Gender { get; set; }
     public DateTime? BirthDay { get; set; }
+    public string? AvatarUrl { get; set; }
+
 }

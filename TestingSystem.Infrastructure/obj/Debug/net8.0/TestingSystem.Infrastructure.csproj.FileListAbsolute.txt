@@ -33,3 +33,21 @@ C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\obj\Debug
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\obj\Debug\net8.0\refint\TestingSystem.Infrastructure.dll
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\obj\Debug\net8.0\TestingSystem.Infrastructure.pdb
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\obj\Debug\net8.0\ref\TestingSystem.Infrastructure.dll
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\bin\Debug\net8.0\TestingSystem.Infrastructure.deps.json
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\bin\Debug\net8.0\TestingSystem.Infrastructure.dll
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\bin\Debug\net8.0\TestingSystem.Infrastructure.pdb
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\bin\Debug\net8.0\TestingSystem.Data.dll
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\bin\Debug\net8.0\TestingSystem.Utilities.dll
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\bin\Debug\net8.0\TestingSystem.Data.pdb
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\bin\Debug\net8.0\TestingSystem.Utilities.pdb
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\obj\Debug\net8.0\TestingSystem.Infrastructure.csproj.AssemblyReference.cache
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\obj\Debug\net8.0\TestingSystem.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\obj\Debug\net8.0\TestingSystem.Infrastructure.AssemblyInfoInputs.cache
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\obj\Debug\net8.0\TestingSystem.Infrastructure.AssemblyInfo.cs
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\obj\Debug\net8.0\TestingSystem.Infrastructure.csproj.CoreCompileInputs.cache
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\obj\Debug\net8.0\TestingSystem.Infrastructure.sourcelink.json
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\obj\Debug\net8.0\TestingS.DF75F28C.Up2Date
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\obj\Debug\net8.0\TestingSystem.Infrastructure.dll
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\obj\Debug\net8.0\refint\TestingSystem.Infrastructure.dll
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\obj\Debug\net8.0\TestingSystem.Infrastructure.pdb
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Infrastructure\obj\Debug\net8.0\ref\TestingSystem.Infrastructure.dll

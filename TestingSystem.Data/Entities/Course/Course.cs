@@ -12,6 +12,7 @@
         public short ProductType { get; set; }
         public string? CourseImageUrl { get; set; }
         public string FullTextSearch { get; set; }
+        public bool? Deleted { get; set; }
         public DateTime? Created { get; set; }
         public DateTime? Modified { get; set; }
 
@@ -19,7 +20,7 @@
 
         public virtual User Author { get; set; }
 
-        public virtual CourseTeacher CourseTeacher { get; set; }
+        public virtual ICollection<CourseTeacher> CourseTeachers { get; set; } = new List<CourseTeacher>();
 
         public virtual ICollection<CourseDetail> CourseDetails { get; set; } = new List<CourseDetail>();
 

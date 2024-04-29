@@ -14,6 +14,7 @@ public class User
     public string? Gender { get; set; }
     public DateTime? BirthDay { get; set; }
     public bool IsActive { get; set; }
+    public string? AvatarUrl { get; set; }
     public DateTime? Created { get; set; }
     public DateTime? Modified { get; set; }
     public string? FullTextSearch { get; set; }

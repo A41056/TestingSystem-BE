@@ -40,6 +40,11 @@ namespace TestingSystem.Core.Services.Implements.Lession
             return await _lessionTranslationRepository.GetLessionTranslationByIdAsync(lessionId);
         }
 
+        public async Task<IEnumerable<LessionDto>> GetLessionTransListByCourseIdAsync(Guid courseId, string languageCode)
+        {
+            return await _lessionRepository.GetLessionTransListByCourseIdAsync(courseId, languageCode);
+        }
+
         public async Task<IEnumerable<LessionTranslationDtro>> GetListLessionByLanguageCode(string languageCode)
         {
             return await _lessionTranslationRepository.GetListLessionByLanguageCode(languageCode);
@@ -48,6 +53,11 @@ namespace TestingSystem.Core.Services.Implements.Lession
         public async Task<IEnumerable<LessionTranslationDtro>> GetListLessionByLessionId(Guid lessionId, string languageCode)
         {
             return await _lessionTranslationRepository.GetListLessionByLessionId(lessionId, languageCode);
+        }
+
+        public async Task<IEnumerable<LessionTranslationDtro>> GetListLessionTransByLessionIds(List<Guid> lessionIds, string languageCode)
+        {
+            return await _lessionTranslationRepository.GetListLessionTransByLessionIds(lessionIds, languageCode);
         }
 
         public async Task InsertAsync(Guid lessionId, LessionDto model)

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TestingSystem.Data.Db;
+using TestingSystem.Data.Entities;
 using TestingSystem.Data.Entities.Course;
 using TestingSystem.Data.Models.Course;
 using TestingSystem.Infrastructure.Repositories.Interfaces.Course;
@@ -85,18 +86,33 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Course
 
         public async Task InsertTranslationAsync(Guid courseId, CourseInsertOrUpdateTranslationDto model)
         {
-            var courseTrans = new CourseTranslation()
-            {
-                LanguageCode = model.LanguageCode,
-                CourseId = model.CourseId,
-                Name = model.Name,
-                Description = model.Description,
-                NumberOfAssignment = model.NumberOfAssignment,
-                NumberOfStudent = model.NumberOfStudent,
-                NumberOfVideo = model.NumberOfVideo
-            };
+            var course = await DbSet.FirstOrDefaultAsync(lt => lt.CourseId == courseId && lt.LanguageCode == model.LanguageCode);
 
-            await DbSet.AddAsync(courseTrans);
+            if (course == null)
+            {
+                var courseTrans = new CourseTranslation()
+                {
+                    Id = Guid.NewGuid(),
+                    LanguageCode = model.LanguageCode,
+                    CourseId = courseId,
+                    Name = model.Name,
+                    Description = model.Description,
+                    NumberOfAssignment = model.NumberOfAssignment,
+                    NumberOfStudent = model.NumberOfStudent,
+                    NumberOfVideo = model.NumberOfVideo
+                };
+
+                await DbSet.AddAsync(courseTrans);
+            }
+            else
+            {
+                course.Name = model.Name;
+                course.Description = model.Description;
+                course.NumberOfAssignment = model.NumberOfAssignment;
+                course.NumberOfStudent = model.NumberOfStudent;
+                course.NumberOfVideo = model.NumberOfVideo;
+            }
+
             await SaveChangeAsync();
         }
     }

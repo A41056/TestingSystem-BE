@@ -10,7 +10,7 @@
         public DateTime? Created { get; set; }
         public DateTime? Modified { get; set; }
         public virtual User Teacher { get; set; }
-        public virtual ICollection<Course> Courses { get; set; } = new List<Course>();
+        public virtual Course Course { get; set; }
         public virtual ICollection<CourseTeacherTranslation> CourseTeacherTranslations { get; set; } = new List<CourseTeacherTranslation>();
 
     }

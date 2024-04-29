@@ -6,6 +6,7 @@ namespace TestingSystem.Infrastructure.Repositories.Interfaces.Lession
     {
         Task InsertAsync(Guid lessionId, LessionDto model);
         Task<IEnumerable<LessionDto>> GetLessionListByCourseIdAsync(Guid courseId);
+        Task<IEnumerable<LessionDto>> GetLessionTransListByCourseIdAsync(Guid courseId, string languageCode);
         Task<LessionDto> GetLessionByIdAsync(Guid lessionId);
         Task DeleteAsync(Guid lessionId);
         Task UpdateLessionAsync(Guid lessionId, LessionDto model);

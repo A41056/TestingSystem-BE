@@ -12,5 +12,6 @@ namespace TestingSystem.Infrastructure.Repositories.Interfaces.Lession
         Task<IEnumerable<LessionTranslationDtro>> GetLessionTranslationByIdAsync(Guid lessionId);
         Task<IEnumerable<LessionTranslationDtro>> GetListLessionByLanguageCode(string languageCode);
         Task<IEnumerable<LessionTranslationDtro>> GetListLessionByLessionId(Guid lessionId, string languageCode);
+        Task<IEnumerable<LessionTranslationDtro>> GetListLessionTransByLessionIds(List<Guid> lessionId, string languageCode);
     }
 }

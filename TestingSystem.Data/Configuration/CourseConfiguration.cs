@@ -22,7 +22,7 @@ namespace TestingSystem.Data.Configuration
                    .HasForeignKey(a => a.AuthorId)
                    .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasIndex(a => a.CategoryId);
+            builder.HasIndex(a => a.Id);
         }
     }
 }

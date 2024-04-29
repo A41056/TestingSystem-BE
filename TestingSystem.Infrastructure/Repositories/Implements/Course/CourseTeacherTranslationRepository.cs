@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TestingSystem.Data.Db;
+using TestingSystem.Data.Entities;
 using TestingSystem.Data.Entities.Course;
 using TestingSystem.Data.Models.Course;
 using TestingSystem.Infrastructure.Repositories.Interfaces.Course;
@@ -22,7 +23,7 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Course
 
         public async Task<IEnumerable<CourseTeacherTranslationDto>> GetCourseTeacherTranslationByIdAsync(Guid courseTeacherId)
         {
-            var result = new List<CourseTeacherTranslationDto>();   
+            var result = new List<CourseTeacherTranslationDto>();
             var ctts = await DbSet.Where(ctt => ctt.CourseTeacherId == courseTeacherId).ToListAsync();
 
             foreach (var item in ctts)
@@ -79,16 +80,29 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Course
 
         public async Task InsertTranslationAsync(Guid courseTeacherId, CourseTeacherTranslationDto model)
         {
-            var courseTeacherTrans = new CourseTeacherTranslation()
-            {
-                LanguageCode = model.LanguageCode,
-                CourseTeacherId = model.CourseTeacherId,
-                Name = model.Name,
-                University = model.University,
-                Description = model.Description,
-            };
+            var teacher = await DbSet.FirstOrDefaultAsync(lt => lt.CourseTeacherId == courseTeacherId && lt.LanguageCode == model.LanguageCode);
 
-            await DbSet.AddAsync(courseTeacherTrans);
+            if (teacher == null)
+            {
+
+                var courseTeacherTrans = new CourseTeacherTranslation()
+                {
+                    LanguageCode = model.LanguageCode,
+                    CourseTeacherId = model.CourseTeacherId,
+                    Name = model.Name,
+                    University = model.University,
+                    Description = model.Description,
+                };
+
+                await DbSet.AddAsync(courseTeacherTrans);
+            }
+            else
+            {
+                teacher.Name = model.Name;
+                teacher.University = model.University;
+                teacher.Description = model.Description;
+            }
+
             await SaveChangeAsync();
         }
     }

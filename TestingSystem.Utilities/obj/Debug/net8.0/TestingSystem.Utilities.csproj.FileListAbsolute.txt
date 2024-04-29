@@ -21,3 +21,15 @@ C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\obj\Debug\net8
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\obj\Debug\net8.0\refint\TestingSystem.Utilities.dll
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\obj\Debug\net8.0\TestingSystem.Utilities.pdb
 C:\Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\obj\Debug\net8.0\ref\TestingSystem.Utilities.dll
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\bin\Debug\net8.0\TestingSystem.Utilities.deps.json
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\bin\Debug\net8.0\TestingSystem.Utilities.dll
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\bin\Debug\net8.0\TestingSystem.Utilities.pdb
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\obj\Debug\net8.0\TestingSystem.Utilities.GeneratedMSBuildEditorConfig.editorconfig
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\obj\Debug\net8.0\TestingSystem.Utilities.AssemblyInfoInputs.cache
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\obj\Debug\net8.0\TestingSystem.Utilities.AssemblyInfo.cs
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\obj\Debug\net8.0\TestingSystem.Utilities.csproj.CoreCompileInputs.cache
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\obj\Debug\net8.0\TestingSystem.Utilities.sourcelink.json
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\obj\Debug\net8.0\TestingSystem.Utilities.dll
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\obj\Debug\net8.0\refint\TestingSystem.Utilities.dll
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\obj\Debug\net8.0\TestingSystem.Utilities.pdb
+D:\.NET Project\TestingSystem\TestingSystem-BE\TestingSystem.Utilities\obj\Debug\net8.0\ref\TestingSystem.Utilities.dll

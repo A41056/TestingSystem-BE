@@ -72,7 +72,8 @@ namespace TestingSystem.Infrastructure.Repositories.Implements.Course
                 TeacherId = teacherId,
                 CourseId = model.CourseId.GetValueOrDefault(),
                 SortOrder = model.SortOrder,
-                AvatarUrl = model.AvatarUrl
+                AvatarUrl = model.AvatarUrl,
+                Created = DateTime.UtcNow
             };
 
             await DbSet.AddAsync(courseTeacher);
