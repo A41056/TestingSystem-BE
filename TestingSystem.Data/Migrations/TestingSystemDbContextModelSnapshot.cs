@@ -631,6 +631,35 @@ namespace TestingSystem.Data.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
+            modelBuilder.Entity("TestingSystem.Data.Entities.UserHistory", b =>
+                {
+                    b.Property<Guid?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserHistories", (string)null);
+                });
+
             modelBuilder.Entity("TestingSystem.Data.Entities.UserRole", b =>
                 {
                     b.Property<Guid>("RoleId")
@@ -904,6 +933,21 @@ namespace TestingSystem.Data.Migrations
                     b.Navigation("UserRole");
                 });
 
+            modelBuilder.Entity("TestingSystem.Data.Entities.UserHistory", b =>
+                {
+                    b.HasOne("TestingSystem.Data.Entities.Course.Course", "Course")
+                        .WithMany("UserHistories")
+                        .HasForeignKey("CourseId");
+
+                    b.HasOne("TestingSystem.Data.Entities.User", "User")
+                        .WithMany("UserHistories")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Course");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TestingSystem.Data.Entities.WebUserChoose", b =>
                 {
                     b.HasOne("TestingSystem.Data.Entities.Answer", "Answer")
@@ -952,6 +996,8 @@ namespace TestingSystem.Data.Migrations
                     b.Navigation("CourseTranslations");
 
                     b.Navigation("Lessions");
+
+                    b.Navigation("UserHistories");
                 });
 
             modelBuilder.Entity("TestingSystem.Data.Entities.Course.CourseDetail", b =>
@@ -1005,6 +1051,8 @@ namespace TestingSystem.Data.Migrations
                     b.Navigation("Exams");
 
                     b.Navigation("Submissions");
+
+                    b.Navigation("UserHistories");
                 });
 
             modelBuilder.Entity("TestingSystem.Data.Entities.UserRole", b =>

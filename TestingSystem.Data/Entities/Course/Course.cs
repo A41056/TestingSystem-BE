@@ -5,7 +5,6 @@
         public Guid Id { get; set; }
         public Guid? CategoryId { get; set; }
         public Guid? AuthorId { get; set; }
-        public Guid? UserHistoryId { get; set; }
         public short Status { get; set; }
         public string NameNonAscii { get; set; }
         public bool? IsHot { get; set; }
