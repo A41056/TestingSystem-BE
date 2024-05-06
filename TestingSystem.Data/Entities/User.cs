@@ -22,6 +22,8 @@ public class User
     public short AccessFailedCount { get; set; }
 
     public UserRole UserRole { get; set; }
+    public ICollection<UserHistory> UserHistories { get; set; }
+
     public ICollection<Exam> Exams { get; set; }
     public ICollection<Submission> Submissions { get; set; }
     public ICollection<Course.Course> Courses { get; set; }

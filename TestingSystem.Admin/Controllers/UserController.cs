@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TestingSystem.Core.Services.Interfaces;
+using TestingSystem.Data.Models;
 using TestingSystem.Data.Models.User;
 
 namespace TestingSystem.Admin.Controllers;
@@ -9,10 +10,12 @@ namespace TestingSystem.Admin.Controllers;
 public class UserController : BaseController
 {
     private readonly IUserService _userService;
+    private readonly IUserHistoryService _userHistoryService;
 
-    public UserController(IUserService userService)
+    public UserController(IUserService userService, IUserHistoryService userHistoryService)
     {
         _userService = userService;
+        _userHistoryService = userHistoryService;
     }
 
     [Authorize(Roles = "Admin")]
@@ -84,6 +87,39 @@ public class UserController : BaseController
         {
             await _userService.UpdateUserInfo(request);
             return Ok("User information updated successfully");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
+
+    [HttpGet("{userId}/history")]
+    public async Task<IActionResult> GetUserHistory(Guid userId)
+    {
+        try
+        {
+            var userHistory = await _userHistoryService.GetHistoryByUserId(userId);
+            return Ok(userHistory);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
+
+    [HttpPost("history")]
+    public async Task<IActionResult> InsertUserHistory([FromBody] UserHistoryInsertDto request)
+    {
+        try
+        {
+            if (request.UserId == null)
+            {
+                return BadRequest("Mismatched userId between URL and request body");
+            }
+
+            await _userHistoryService.InsertUserHistory(request);
+            return Ok("User history inserted successfully");
         }
         catch (Exception ex)
         {

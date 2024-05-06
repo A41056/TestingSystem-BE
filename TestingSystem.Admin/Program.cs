@@ -128,6 +128,7 @@ builder.Services.AddScoped<ICategoryService, CategorySerivce>();
 builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<ILanguageService, LanguageService>();
 builder.Services.AddScoped<ILessionService, LessionService>();
+builder.Services.AddScoped<IUserHistoryService, UserHistoryService>();
 
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
@@ -150,6 +151,9 @@ builder.Services.AddScoped<ILessionRepository, LessionRepository>();
 builder.Services.AddScoped<ILessionTranslationRepository, LessionTranslationRepository>();
 
 builder.Services.AddScoped<ILanguageTagRepository, LanguageTagRepository>();
+
+builder.Services.AddScoped<IUserHistoryRepository, UserHistoryRepository>();
+
 
 var app = builder.Build();
 
