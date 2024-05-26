@@ -41,6 +41,17 @@ namespace TestingSystem.Admin.Controllers
             return Ok(exam);
         }
 
+        [HttpGet("lesson/{lessonId}")]
+        public async Task<IActionResult> GetByLessonId(Guid lessonId)
+        {
+            var exam = await _examService.GetByLessonId(lessonId);
+            if (exam == null)
+            {
+                return NotFound(); // Or any appropriate response
+            }
+            return Ok(exam);
+        }
+
         [HttpGet("detail/{id}")]
         public async Task<IActionResult> GetExamDetail(Guid id)
         {

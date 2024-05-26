@@ -129,6 +129,8 @@ builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<ILanguageService, LanguageService>();
 builder.Services.AddScoped<ILessionService, LessionService>();
 builder.Services.AddScoped<IUserHistoryService, UserHistoryService>();
+builder.Services.AddScoped<ISubmissionService, SubmissionService>();
+builder.Services.AddScoped<IWebUserChooseService, WebUserChooseService>();
 
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
@@ -153,7 +155,11 @@ builder.Services.AddScoped<ILessionTranslationRepository, LessionTranslationRepo
 builder.Services.AddScoped<ILanguageTagRepository, LanguageTagRepository>();
 
 builder.Services.AddScoped<IUserHistoryRepository, UserHistoryRepository>();
+builder.Services.AddScoped<ISubmissionRepository, SubmissionRepository>();
+builder.Services.AddScoped<IWebUserChooseRepository, WebUserChooseRepository>();
 
+builder.Services.AddScoped<IAnswerTranslationRepository, AnswerTranslationRepository>();
+builder.Services.AddScoped<IQuestionTranslationRepository, QuestionTranslationRepository>();
 
 var app = builder.Build();
 

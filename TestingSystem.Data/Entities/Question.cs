@@ -20,4 +20,6 @@ public class Question
     public virtual Exam Exam { get; set; }
 
     public virtual ICollection<WebUserChoose> WebUserChooses { get; set; } = new List<WebUserChoose>();
+
+    public virtual ICollection<QuestionTranslation> QuestionTranslations { get; set; } = new List<QuestionTranslation>();
 }

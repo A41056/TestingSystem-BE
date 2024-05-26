@@ -57,6 +57,34 @@ namespace TestingSystem.Data.Migrations
                     b.ToTable("Answers", (string)null);
                 });
 
+            modelBuilder.Entity("TestingSystem.Data.Entities.AnswerTranslation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AnswerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LanguageCode")
+                        .IsRequired()
+                        .HasColumnType("varchar(5)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnswerId");
+
+                    b.HasIndex("Id");
+
+                    b.HasIndex("LanguageCode");
+
+                    b.ToTable("AnswerTranslations", (string)null);
+                });
+
             modelBuilder.Entity("TestingSystem.Data.Entities.Category.Category", b =>
                 {
                     b.Property<Guid>("Id")
@@ -361,6 +389,9 @@ namespace TestingSystem.Data.Migrations
                     b.Property<bool>("IsAutoGrade")
                         .HasColumnType("bit");
 
+                    b.Property<Guid?>("LessonId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
@@ -380,6 +411,8 @@ namespace TestingSystem.Data.Migrations
                     b.HasIndex("CreatedByUserId");
 
                     b.HasIndex("ExamId");
+
+                    b.HasIndex("LessonId");
 
                     b.ToTable("Exams", (string)null);
                 });
@@ -519,6 +552,34 @@ namespace TestingSystem.Data.Migrations
                     b.HasIndex("Id");
 
                     b.ToTable("Questions", (string)null);
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.QuestionTranslation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LanguageCode")
+                        .IsRequired()
+                        .HasColumnType("varchar(5)");
+
+                    b.Property<Guid>("QuestionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id");
+
+                    b.HasIndex("LanguageCode");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("QuestionTranslations", (string)null);
                 });
 
             modelBuilder.Entity("TestingSystem.Data.Entities.Submission", b =>
@@ -728,6 +789,25 @@ namespace TestingSystem.Data.Migrations
                     b.Navigation("Question");
                 });
 
+            modelBuilder.Entity("TestingSystem.Data.Entities.AnswerTranslation", b =>
+                {
+                    b.HasOne("TestingSystem.Data.Entities.Answer", "Answer")
+                        .WithMany("AnswerTranslations")
+                        .HasForeignKey("AnswerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TestingSystem.Data.Entities.LanguageTag", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Answer");
+
+                    b.Navigation("Language");
+                });
+
             modelBuilder.Entity("TestingSystem.Data.Entities.Category.CategoryTranslation", b =>
                 {
                     b.HasOne("TestingSystem.Data.Entities.Category.Category", "Category")
@@ -859,6 +939,13 @@ namespace TestingSystem.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TestingSystem.Data.Entities.Lession", "Lesson")
+                        .WithMany("Exams")
+                        .HasForeignKey("LessonId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Lesson");
+
                     b.Navigation("Teacher");
                 });
 
@@ -901,6 +988,25 @@ namespace TestingSystem.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Exam");
+                });
+
+            modelBuilder.Entity("TestingSystem.Data.Entities.QuestionTranslation", b =>
+                {
+                    b.HasOne("TestingSystem.Data.Entities.LanguageTag", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TestingSystem.Data.Entities.Question", "Question")
+                        .WithMany("QuestionTranslations")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Language");
+
+                    b.Navigation("Question");
                 });
 
             modelBuilder.Entity("TestingSystem.Data.Entities.Submission", b =>
@@ -977,6 +1083,8 @@ namespace TestingSystem.Data.Migrations
 
             modelBuilder.Entity("TestingSystem.Data.Entities.Answer", b =>
                 {
+                    b.Navigation("AnswerTranslations");
+
                     b.Navigation("WebUserChooses");
                 });
 
@@ -1032,12 +1140,16 @@ namespace TestingSystem.Data.Migrations
 
             modelBuilder.Entity("TestingSystem.Data.Entities.Lession", b =>
                 {
+                    b.Navigation("Exams");
+
                     b.Navigation("LessionTranslations");
                 });
 
             modelBuilder.Entity("TestingSystem.Data.Entities.Question", b =>
                 {
                     b.Navigation("Answers");
+
+                    b.Navigation("QuestionTranslations");
 
                     b.Navigation("WebUserChooses");
                 });

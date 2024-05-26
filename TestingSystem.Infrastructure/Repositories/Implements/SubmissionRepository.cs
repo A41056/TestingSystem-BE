@@ -1,4 +1,6 @@
-﻿using System.Linq.Expressions;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+using System.Linq.Expressions;
 using TestingSystem.Data.Common;
 using TestingSystem.Data.Db;
 using TestingSystem.Data.Entities;
@@ -24,12 +26,44 @@ public class SubmissionRepository : BaseRepository<Submission>, ISubmissionRepos
 
     public async Task<PaginatedResponseModel<Submission>> GetListSubmitOfUser(SearchingSubmitRequest request)
     {
-        return await GetPaginatedDataByRequest(request,
-                    filter: f =>
-                    (request.Id == null || f.Id == request.Id) &&
-                    (request.UserId == null || f.StudentId == request.UserId) &&
-                    (request.ExamId == null || f.ExamId == request.ExamId)
-                    );
+        // Assuming _context is your database context, and Submissions is your DbSet<Submission>
+        var query = DbSet.AsQueryable();
+
+        // Apply filters
+        if (request.Id != null)
+        {
+            query = query.Where(f => f.Id == request.Id);
+        }
+
+        if (request.UserId != null)
+        {
+            query = query.Where(f => f.StudentId == request.UserId);
+        }
+
+        if (request.ExamId != null)
+        {
+            query = query.Where(f => f.ExamId == request.ExamId);
+        }
+
+        Trace.WriteLine(query.ToQueryString());
+
+        // Apply pagination
+        var totalRecords = await query.CountAsync();
+        var items = await query
+            .Skip((request.PageNum - 1) * request.PageSize)
+            .Take(request.PageSize)
+            .ToListAsync();
+
+        // Construct the paginated response
+        var response = new PaginatedResponseModel<Submission>
+        {
+            Data = items,
+            PageNum = request.PageNum,
+            PageSize = request.PageSize,
+            TotalRecords = totalRecords
+        };
+
+        return response;
     }
 
     public async Task<Submission> GetSubmission(Guid id)

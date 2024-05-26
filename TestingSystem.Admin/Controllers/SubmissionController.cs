@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TestingSystem.Core.Services.Implements;
+using TestingSystem.Core.Services.Interfaces;
 using TestingSystem.Data.Common;
 using TestingSystem.Data.Entities;
 using TestingSystem.Data.Models.Submission;
@@ -9,9 +10,9 @@ namespace TestingSystem.Admin.Controllers
 {
     public class SubmissionController : BaseController
     {
-        private readonly SubmissionService _submissionService;
+        private readonly ISubmissionService _submissionService;
 
-        public SubmissionController(SubmissionService submissionService)
+        public SubmissionController(ISubmissionService submissionService)
         {
             _submissionService = submissionService;
         }
@@ -51,7 +52,7 @@ namespace TestingSystem.Admin.Controllers
         }
 
         [HttpGet("getSubmissions")]
-        public async Task<IActionResult> GetSubmissionByUserId([FromQuery] SearchingSubmitRequest request)
+        public async Task<ActionResult<PaginatedResponseModel<Submission>>> GetSubmissionByUserId([FromQuery] SearchingSubmitRequest request)
         {
             var result = await _submissionService.GetListSubmitOfUser(request);
 

@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using TestingSystem.Data.Common;
 using TestingSystem.Data.Db;
@@ -28,6 +27,7 @@ public class ExamRepository : BaseRepository<Exam>, IExamRepository
         var exam = new Exam
         {
             ExamId = Guid.NewGuid(),
+            LessonId = request.LessonId,
             Title = request.Title,
             Status = Utilities.Enum.ExamStatus.Pulished,
             IsAutoGrade = true,
@@ -89,7 +89,8 @@ public class ExamRepository : BaseRepository<Exam>, IExamRepository
                 (request.Title == null || f.Title == request.Title) &&
                 (request.Status == null || f.Status == request.Status) &&
                 (request.CreatedByUserId == null || f.CreatedByUserId == request.CreatedByUserId) &&
-                (request.ModifiedByUserId == null || f.ModifiedByUserId == request.ModifiedByUserId)
+                (request.ModifiedByUserId == null || f.ModifiedByUserId == request.ModifiedByUserId) &&
+                (f.LessonId == null)
                 );
     }
 
@@ -100,6 +101,7 @@ public class ExamRepository : BaseRepository<Exam>, IExamRepository
         if (exam == null)
             throw new ExamNotExistException();
 
+        exam.LessonId = request.LessonId;
         exam.Title = request.Title;
         exam.Status = Utilities.Enum.ExamStatus.Pulished;
         exam.ModifiedByUserId = request.ModifiedByUserId.GetValueOrDefault();
@@ -143,5 +145,10 @@ public class ExamRepository : BaseRepository<Exam>, IExamRepository
         };
 
         return examDetailDTO;
+    }
+
+    public async Task<Exam> GetByLessonId(Guid lessonId)
+    {
+        return await DbSet.FirstOrDefaultAsync(e => e.LessonId == lessonId);
     }
 }

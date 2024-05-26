@@ -30,6 +30,9 @@ public class TestingSystemDbContext : DbContext
     public virtual DbSet<Lession> Lessions { get; set; }
     public virtual DbSet<LessionTranslation> LessionTranslations { get; set; }
     public virtual DbSet<UserHistory> UserHistories { get; set; }
+    public virtual DbSet<AnswerTranslation> AnswerTranslations { get; set; }
+    public virtual DbSet<QuestionTranslation> QuestionTranslations { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

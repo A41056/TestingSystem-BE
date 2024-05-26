@@ -44,4 +44,9 @@ public class ExamService : IExamService
     {
         return await (_examRepository.UpdateExam(request));
     }
+
+    public async Task<Exam> GetByLessonId(Guid lessonId)
+    {
+        return await _examRepository.GetByLessonId(lessonId);
+    }
 }

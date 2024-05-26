@@ -14,4 +14,6 @@ public class Answer
     public virtual Question Question { get; set; }
 
     public virtual ICollection<WebUserChoose> WebUserChooses { get; set; } = new List<WebUserChoose>();
+    public virtual ICollection<AnswerTranslation> AnswerTranslations { get; set; } = new List<AnswerTranslation>();
+
 }

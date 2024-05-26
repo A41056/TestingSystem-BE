@@ -13,5 +13,7 @@
 
         public Course.Course Course { get; set; }
         public virtual ICollection<LessionTranslation> LessionTranslations { get; set; } = new List<LessionTranslation>();
+        public virtual ICollection<Exam> Exams { get; set; } = new List<Exam>();
+
     }
 }

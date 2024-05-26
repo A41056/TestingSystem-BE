@@ -10,4 +10,6 @@ public interface IQuestionService
     Task<Question> AddQuestion(CreateOrUpdateQuestionRequest request);
     Task<Question> UpdateQuestion(QuestionDto request);
     Task<bool> DeleteQuestion(Guid id);
+    Task InsertTranslationAsync(Guid QuestionId, QuestionTranslationCreateOrUpdateDto model);
+    Task<IEnumerable<QuestionTranslationCreateOrUpdateDto>> GetListByQuestionId(Guid QuestionId, string languageCode);
 }

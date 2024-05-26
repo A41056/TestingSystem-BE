@@ -22,6 +22,11 @@ public class ExamConfiguration : IEntityTypeConfiguration<Exam>
                .HasForeignKey(q => q.ExamId)
                .OnDelete(DeleteBehavior.Cascade);
 
+        builder.HasOne(e => e.Lesson)
+            .WithMany(u => u.Exams)
+            .HasForeignKey(e => e.LessonId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         builder.HasIndex(a => a.ExamId);
     }
 }

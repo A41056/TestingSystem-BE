@@ -5,9 +5,6 @@ using TestingSystem.Data.Models.Answer;
 
 namespace TestingSystem.Admin.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    [Authorize(Roles ="Admin, Teacher")]
     public class AnswerController : BaseController
     {
         private readonly IAnswerService _answerService;
@@ -17,6 +14,7 @@ namespace TestingSystem.Admin.Controllers
             _answerService = answerService;
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpPost("add")]
         public async Task<IActionResult> AddAnswer(CreateOrUpdateAnswerRequest request)
         {
@@ -24,6 +22,15 @@ namespace TestingSystem.Admin.Controllers
             return Ok(answer);
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
+        [HttpPost("{answerId}/translations")]
+        public async Task<IActionResult> InsertAnswerTranslation(Guid answerId, AnswerTranslationCreateOrUpdateDto model)
+        {
+            await _answerService.InsertTranslationAsync(answerId, model);
+            return Ok();
+        }
+
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteAnswer(Guid id)
         {
@@ -49,6 +56,14 @@ namespace TestingSystem.Admin.Controllers
             return Ok(paginatedResponse);
         }
 
+        [HttpGet("{answerId}/translations/{languageCode}")]
+        public async Task<ActionResult<IEnumerable<AnswerTranslationCreateOrUpdateDto>>> GetAnswerTranslationsByAnswerAndLanguage(Guid answerId, string languageCode)
+        {
+            var translations = await _answerService.GetListByAnswerId(answerId, languageCode);
+            return Ok(translations);
+        }
+
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpPut("update")]
         public async Task<IActionResult> UpdateAnswer(AnswerDto request)
         {

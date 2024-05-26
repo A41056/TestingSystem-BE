@@ -8,10 +8,13 @@ namespace TestingSystem.Core.Services.Implements;
 public class QuestionService : IQuestionService
 {
     private readonly IQuestionRepository _questionRepository;
-    
-    public QuestionService(IQuestionRepository questionRepository)
+    private readonly IQuestionTranslationRepository _questionTransRepository;
+
+
+    public QuestionService(IQuestionRepository questionRepository, IQuestionTranslationRepository questionTranslationRepository)
     {
         _questionRepository = questionRepository;
+        _questionTransRepository = questionTranslationRepository;
     }
 
     public async Task<Question> AddQuestion(CreateOrUpdateQuestionRequest request)
@@ -32,6 +35,16 @@ public class QuestionService : IQuestionService
     public async Task<PaginatedResponseModel<Question>> GetListByExamId(SearchingQuestionRequest request)
     {
         return await _questionRepository.GetListByExamId(request);
+    }
+
+    public async Task<IEnumerable<QuestionTranslationCreateOrUpdateDto>> GetListByQuestionId(Guid QuestionId, string languageCode)
+    {
+        return await _questionTransRepository.GetListByQuestionId(QuestionId, languageCode);
+    }
+
+    public async Task InsertTranslationAsync(Guid QuestionId, QuestionTranslationCreateOrUpdateDto model)
+    {
+        await _questionTransRepository.InsertTranslationAsync(QuestionId, model);
     }
 
     public async Task<Question> UpdateQuestion(QuestionDto request)

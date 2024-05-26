@@ -10,4 +10,6 @@ public interface IAnswerService
     Task<Answer> AddAnswer(CreateOrUpdateAnswerRequest request);
     Task<Answer> UpdateAnswer(AnswerDto request);
     Task<bool> DeleteAnswer(Guid id);
+    Task InsertTranslationAsync(Guid answerId, AnswerTranslationCreateOrUpdateDto model);
+    Task<IEnumerable<AnswerTranslationCreateOrUpdateDto>> GetListByAnswerId(Guid answerId, string languageCode);
 }

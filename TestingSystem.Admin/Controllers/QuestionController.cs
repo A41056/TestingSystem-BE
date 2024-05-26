@@ -5,9 +5,6 @@ using TestingSystem.Data.Models.Question;
 
 namespace TestingSystem.Admin.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    [Authorize(Roles = "Admin, Teacher")]
     public class QuestionController : BaseController
     {
         private readonly IQuestionService _questionService;
@@ -17,6 +14,7 @@ namespace TestingSystem.Admin.Controllers
             _questionService = questionService;
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpPost("add")]
         public async Task<IActionResult> AddQuestion(CreateOrUpdateQuestionRequest request)
         {
@@ -24,6 +22,15 @@ namespace TestingSystem.Admin.Controllers
             return Ok(question); // Or you can return CreatedAtAction or any appropriate response
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
+        [HttpPost("{questionId}/translations")]
+        public async Task<IActionResult> InsertQuestionTranslation(Guid questionId, QuestionTranslationCreateOrUpdateDto model)
+        {
+            await _questionService.InsertTranslationAsync(questionId, model);
+            return Ok();
+        }
+
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteQuestion(Guid id)
         {
@@ -49,6 +56,14 @@ namespace TestingSystem.Admin.Controllers
             return Ok(paginatedResponse);
         }
 
+        [HttpGet("{questionId}/translations/{languageCode}")]
+        public async Task<ActionResult<IEnumerable<QuestionTranslationCreateOrUpdateDto>>> GetQuestionTranslationsByQuestionAndLanguage(Guid questionId, string languageCode)
+        {
+            var translations = await _questionService.GetListByQuestionId(questionId, languageCode);
+            return Ok(translations);
+        }
+
+        [Authorize(Roles = "Admin, Teacher")]
         [HttpPut("update")]
         public async Task<IActionResult> UpdateQuestion(QuestionDto request)
         {
